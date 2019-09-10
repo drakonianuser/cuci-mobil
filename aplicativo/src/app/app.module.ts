@@ -32,7 +32,7 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot()
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
