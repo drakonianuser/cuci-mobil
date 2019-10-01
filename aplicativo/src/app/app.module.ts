@@ -17,13 +17,14 @@ import {RouterModule, Route} from '@angular/router';
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
-  {path: 'inicio/registrarEntrada', component: RegistrarEntradaServitecaComponent},
+  {path: 'inicio/registrarEntrada', component: RegistrarEntradaServitecaComponent}, //kill this
   {path: 'registroUsuario', component: RegistroUsuarioComponent},
   {path: 'registroVehiculo', component: RegistroVehiculoComponent},
   {path: 'nav', component: NavComponent},
   {path: 'editarVehiculo', component: EditarVehiculoComponent},
   {path: 'editarServicio', component: EditarServicioComponent},
-  {path: 'vehiculosIngresados', component: VehiculosIngresadosComponent}
+  {path: 'vehiculosIngresados', component: VehiculosIngresadosComponent},
+  {path: 'Liquidacion', component: LiquidacionComponent}
 ]
 
 
