@@ -13,18 +13,20 @@ import { NavComponent } from './nav/nav.component';
 import { EditarVehiculoComponent } from './admin/vehiculo/editar-vehiculo.component';
 import { EditarServicioComponent } from './admin/servicios/editar-servicio.component';
 import { VehiculosIngresadosComponent } from './admin/vehiculosIngresados/vehiculos-ingresados.component';
+import { Reportes } from './reportes/reportes.component';
 import {RouterModule, Route} from '@angular/router';
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
-  {path: 'inicio/registrarEntrada', component: RegistrarEntradaServitecaComponent}, //kill this
+  {path: 'inicio/registrarEntrada', component: RegistrarEntradaServitecaComponent}, 
   {path: 'registroUsuario', component: RegistroUsuarioComponent},
   {path: 'registroVehiculo', component: RegistroVehiculoComponent},
   {path: 'nav', component: NavComponent},
   {path: 'editarVehiculo', component: EditarVehiculoComponent},
   {path: 'editarServicio', component: EditarServicioComponent},
   {path: 'vehiculosIngresados', component: VehiculosIngresadosComponent},
-  {path: 'Liquidacion', component: LiquidacionComponent}
+  {path: 'Liquidacion', component: LiquidacionComponent},
+  {path: 'Reportes', component: Reportes}
 ]
 
 
@@ -40,7 +42,8 @@ const routes: Route[] = [
     NavComponent,
     EditarVehiculoComponent,
     EditarServicioComponent,
-    VehiculosIngresadosComponent
+    VehiculosIngresadosComponent,
+    Reportes
   ],
   imports: [
     BrowserModule,
