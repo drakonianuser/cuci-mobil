@@ -70,7 +70,12 @@
 }
 
 body{
-    background-image: url("./assets/fon2.jpg");    
+    background-image: url("./assets/fon2.jpg"); 
+    background-size: cover;
+    background-repeat: no-repeat;  
+    background-size: 100%;
+    background-position: center;
+    margin: auto;
 }
 
 .iconos{
