@@ -22,7 +22,7 @@
         
     </div>
     <div class="row justify-content-center pt-3 pb-5">
-        <button class="botones">
+        <button class="botones" [routerLink]="['/registroUsuario']">
             Asignar cliente
         </button>
         <input class="inputs"  type="text" placeholder="Documento">
@@ -31,6 +31,6 @@
 </form>
 <div class="row justify-content-center pb-5">
     <div class="p-3">
-        <button class="botones">Asignar servicios</button>
+        <button class="botones" [routerLink]="['/inicio/registrarEntrada']">Asignar servicios</button>
     </div>   
 </div>
