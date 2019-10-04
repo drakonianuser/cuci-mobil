@@ -15,6 +15,7 @@ import { EditarServicioComponent } from './admin/servicios/editar-servicio.compo
 import { VehiculosIngresadosComponent } from './admin/vehiculosIngresados/vehiculos-ingresados.component';
 import { Reportes } from './reportes/reportes.component';
 import {RouterModule, Route} from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
@@ -48,7 +49,8 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
