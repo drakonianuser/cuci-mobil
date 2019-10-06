@@ -1,6 +1,5 @@
-<div class="container col-8 bg-success h-5">
-    <div class="row bg-primary">
-
+<!-- <div class="container col-8  h-5" >
+    <div class="row">
         <div>
             <button class="botones" [routerLink]="['/registroVehiculo']">
                 Registrar entrada
@@ -29,4 +28,14 @@
             </button>
         </div>
     </div>
-</div>
+</div> -->
+<nav mat-tab-nav-bar  [backgroundColor]="background">
+    <a mat-tab-link *ngFor="let link of links"
+    [routerLink]="link.path"
+     (click)="activeLink = link"
+     [active]="activeLink == link"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     > {{link}} 
+     </a>
+</nav>

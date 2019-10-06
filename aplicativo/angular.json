@@ -127,5 +127,10 @@
       }
     }
   },
-  "defaultProject": "client"
+  "defaultProject": "client",
+  "cli": {
+    "warnings": {
+      "versionMismatch": false
+    }
+  }
 }

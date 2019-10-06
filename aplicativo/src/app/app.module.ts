@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
+import { MaterialModule } from "./material.module";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ const routes: Route[] = [
     Reportes
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
