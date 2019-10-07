@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-registro-vehiculo',
@@ -6,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-vehiculo.component.css']
 })
 export class RegistroVehiculoComponent implements OnInit {
-
-  constructor() { }
+  stateCtrl:boolean = false
+  vehiculos = [];
+  constructor() {
+    this.vehiculos=[
+      {
+        name:"moto",
+        value:1
+      },
+      {
+        name:"carro",
+        value:2
+      }
+    ]
+   }
 
   ngOnInit() {
   }

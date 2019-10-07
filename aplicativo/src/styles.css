@@ -1,10 +1,9 @@
 .botones{
-    font:bold 120% serif;
     text-decoration: none;
     padding: 5px 10px 5px 10px;
+    margin: 10px;
     color: #f2f2f2;
-    border-radius: 10px;
-    border: 3px solid #007bff;
+    border: px solid #007bff;
     
     background: #007bff;
 	transition:background 1s;
@@ -25,7 +24,7 @@
 }
 
 .contenedor{
-    background: #00000059;
+    background: #ffffff;
 }
 
 .cuadro{

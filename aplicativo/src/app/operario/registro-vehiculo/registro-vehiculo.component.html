@@ -4,33 +4,57 @@
         <h1 class="titulos">Vehiculo</h1>
     </div>
 </div>
-
-<form class="container contenedor col-6 pb-3 pt-3">
-    <div class="row justify-content-center pb-5 pt-5">
-        <input type="text" class="inputs" placeholder="Buscar vehiculo">
-        <button class="botones">buscar</button>
-    </div>
-
-        <div class="row justify-content-center pb-3">
-            <input class="inputs"  type="text" placeholder="TipoVehiculo">
-        </div>
-        <div class="row justify-content-center pb-3">
-            <input class="inputs"  type="text" placeholder="placa">
-        </div>
-    <div class="row justify-content-center pb-4">
-        <input class="inputs"  type="text" placeholder="modelo">
-        
-    </div>
-    <div class="row justify-content-center pt-3 pb-5">
-        <button class="botones" [routerLink]="['/registroUsuario']">
-            Asignar cliente
-        </button>
-        <input class="inputs"  type="text" placeholder="Documento">
-    </div>
-
+<form class="example-form" class="container contenedor col-6 pb-3 pt-3">
+    <mat-form-field class="input-mid-width" >
+        <input matInput placeholder="Buscar vehiculo" value="">
+    </mat-form-field>
+    <button mat-button class="botones" > Buscar</button>
+    <table class="input-full-width"><tr>
+    <td>
+    <mat-form-field class="input-full-width" >
+    <mat-label>Tipo Vehiculo*</mat-label>
+    <mat-select >
+        <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.value">
+         {{vehiculo.name}}
+        </mat-option>
+    </mat-select>
+    </mat-form-field>
+    </td><td>
+    <mat-form-field class="input-mid-width" >
+        <input matInput placeholder="Placa*" value="">
+    </mat-form-field></td>
+    </tr></table>
+    <mat-label>Cliente</mat-label>
+    <table class="input-full-width"><tr><td>
+    <mat-form-field class="input-full-width" >
+        <input matInput placeholder="Documento">
+    </mat-form-field>
+    </td><td>
+    <mat-slide-toggle
+    [checked]="stateCtrl.false"
+    (change)="stateCtrl = false ? stateCtrl = true : stateCtrl = !stateCtrl">
+        Registrar Cliente?
+    </mat-slide-toggle>
+    </td>
+    </tr>
+    </table>
+    <ng-container *ngIf="stateCtrl">
+    <table class="input-full-width" ><tr><td>
+    <mat-form-field class="input-full-width" >
+        <input matInput placeholder="Nombre" >
+    </mat-form-field>
+    </td><td>
+    <mat-form-field class="input-full-width" >
+            <input matInput placeholder="Apellidos" >
+    </mat-form-field>
+    </td></tr>
+    <tr><td>
+    <mat-form-field class="example-full-width">
+        <input type="tel" matInput placeholder="Telefono">
+    </mat-form-field>
+    </td></tr>
+    </table>
+    </ng-container>
+    
+    <button mat-button class="botones" [routerLink]="['/inicio/registrarEntrada']">Asignar servicios</button>
 </form>
-<div class="row justify-content-center pb-5">
-    <div class="p-3">
-        <button class="botones" [routerLink]="['/inicio/registrarEntrada']">Asignar servicios</button>
-    </div>   
-</div>

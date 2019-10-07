@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PantallaInicioComponent } from './pantalla-inicio/pantalla-inicio.component';
 import { RegistroVehiculoComponent } from './operario/registro-vehiculo/registro-vehiculo.component';
-import { RegistroUsuarioComponent } from './operario/registro-usuario/registro-usuario.component';
 import { RegistrarEntradaServitecaComponent } from './operario/registrar-entrada-serviteca/registrar-entrada-serviteca.component';
 import { LiquidacionComponent } from './operario/liquidacion/liquidacion.component';
 import { NavComponent } from './nav/nav.component';
@@ -21,7 +20,7 @@ const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
   {path: 'inicio/registrarEntrada', component: RegistrarEntradaServitecaComponent}, 
-  {path: 'registroUsuario', component: RegistroUsuarioComponent},
+
   {path: 'registroVehiculo', component: RegistroVehiculoComponent},
   {path: 'nav', component: NavComponent},
   {path: 'editarVehiculo', component: EditarVehiculoComponent},
@@ -38,7 +37,6 @@ const routes: Route[] = [
     LoginComponent,
     PantallaInicioComponent,
     RegistroVehiculoComponent,
-    RegistroUsuarioComponent,
     RegistrarEntradaServitecaComponent,
     LiquidacionComponent,
     NavComponent,
