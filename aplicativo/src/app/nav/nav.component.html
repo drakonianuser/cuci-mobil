@@ -1,41 +1,10 @@
-<!-- <div class="container col-8  h-5" >
-    <div class="row">
-        <div>
-            <button class="botones" [routerLink]="['/registroVehiculo']">
-                Registrar entrada
-            </button>
-        </div>
-
-        <div>
-            <button class="botones" [routerLink]="['/editarServicio']">
-                Parametrización
-            </button>
-        </div>
-
-        <div>
-            <button class="botones"  [routerLink]="['/vehiculosIngresados']">
-                Ver facturas
-            </button>
-        </div>
-        <div>
-            <button class="botones" [routerLink]="['/Reportes']">
-                Generar reporte
-            </button>
-        </div>
-        <div>
-            <button class="botones"  [routerLink]="['/']">
-                Cerrar sesión
-            </button>
-        </div>
-    </div>
-</div> -->
 <nav mat-tab-nav-bar  [backgroundColor]="background">
-    <a mat-tab-link *ngFor="let link of links"
-    [routerLink]="link.path"
-     (click)="activeLink = link"
-     [active]="activeLink == link"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive"
-     > {{link}} 
-     </a>
+    <a mat-tab-link  *ngFor="let link of links"
+        [routerLink]="link.path"
+        routerLinkActive #rla="routerLinkActive"
+        [active]="rla.isActive"> 
+        {{link.name}} 
+        </a>
 </nav>
+
+
