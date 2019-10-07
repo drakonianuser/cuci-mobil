@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { link } from "../model/links";
 
 @Component({
   selector: 'app-nav',
@@ -7,11 +6,36 @@ import { link } from "../model/links";
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  links = ['First', 'Second', 'Third'];
+  links = [];
   activeLink = this.links[0];
+
   background = 'primary';
 
-  constructor() { }
+  constructor() { 
+    this.links =[
+      {
+        name:"Registrar entrada",
+        path:"/registroVehiculo"
+
+      },
+      {
+        name:"Parametrización",
+        path:"/editarServicio"
+      },
+      {
+        name:"Ver facturas",
+        path:"/vehiculosIngresados"
+      },
+      {
+        name:"Generar reporte",
+        path:"/Reportes"
+      },
+      {
+        name:"Cerrar sesión",
+        path:"/"
+      },
+    ]
+  }
 
   ngOnInit() {
   }

@@ -18,6 +18,19 @@ const ELEMENT_DATA: elemento[] = [
   {vehiculos: "vehiculos", precio: 1.2},
 ];
 
+export interface descuento {
+  numServicios: number;
+  porcentageDes: number;
+}
+
+const DESCUENTO_SERVI: descuento[] = [
+  {numServicios: 1, porcentageDes: 1.2},
+  {numServicios: 4, porcentageDes: 12},
+  {numServicios: 3, porcentageDes: 12},
+  {numServicios: 5, porcentageDes: 12},
+
+];
+
 @Component({
   selector: 'app-editar-servicio',
   templateUrl: './editar-servicio.component.html',
@@ -26,7 +39,9 @@ const ELEMENT_DATA: elemento[] = [
 export class EditarServicioComponent implements OnInit {
 
   displayedColumns: string[] = ['vehiculos', 'precio', 'select'];
+  columns: string[] = ['numServicios', 'porcentageDes'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  data = new MatTableDataSource(DESCUENTO_SERVI);
   selection = new SelectionModel<elemento>(true, []);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
