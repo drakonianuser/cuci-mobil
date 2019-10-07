@@ -68,14 +68,14 @@
     color: #ffffff;
 }
 
-body{
+/* body{
     background-image: url("./assets/fon2.jpg"); 
     background-size: cover;
     background-repeat: no-repeat;  
     background-size: 100%;
     background-position: center;
     margin: auto;
-}
+} */
 
 .iconos{
     font:bold 120% serif;

@@ -14,17 +14,19 @@
     </div>
 
     <div class="row justify-content-center">
-        <input class="inputs" type="text" placeholder="Nombre">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Usuario" type="email">
+        </mat-form-field>
     </div>
 
     <div class="row justify-content-center p-4">    
-        <input class="inputs" type="password" placeholder="Contaseña">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Contraseña" type="password">
+        </mat-form-field>
     </div>
     
     <div class="row justify-content-center pb-5">   
-        <button class="botones" [routerLink]="['/registroVehiculo']">
-            Entrar
-        </button>
+        <button mat-raised-button color="primary" [routerLink]="['/registroVehiculo']">Ingresar</button>
     </div>
 
 </form>
