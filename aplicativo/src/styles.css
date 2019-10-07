@@ -20,7 +20,7 @@
 
 .titulos{
     font:bold 200% serif;
-    color: #f2f2f2;
+    color: #000;
 }
 
 .contenedor{
@@ -68,14 +68,13 @@
     color: #ffffff;
 }
 
-/* body{
-    background-image: url("./assets/fon2.jpg"); 
+body{
+    background-image: url("./assets/fon2.jpg");
     background-size: cover;
-    background-repeat: no-repeat;  
+    background-repeat: repeat;  
     background-size: 100%;
     background-position: center;
-    margin: auto;
-} */
+} 
 
 .iconos{
     font:bold 120% serif;

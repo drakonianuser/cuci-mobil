@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
         path:"/editarServicio"
       },
       {
-        name:"Ver facturas",
+        name:"Turnos",
         path:"/vehiculosIngresados"
       },
       {

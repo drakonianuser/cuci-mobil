@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <div class="container col-3 pt-5">
     <div class="row justify-content-center">
-        <h1 class="titulos">Vehiculos ingresados</h1>
+        <h1 class="titulos">Turnos</h1>
     </div>
 </div>
 <div class="container contenedor col-7 p-5">
@@ -24,7 +24,7 @@
       <div class="example-element-detail"
            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
         <div >
-            <div class="row justify-content-start">Servicios: {{element.servicios}}</div>
+            <div class="row justify-content-start">----Servicios: {{element.servicios}}</div>
             <div>{{element.servicio}}</div>
         </div>
         <div class="container">
@@ -32,7 +32,7 @@
                 <button mat-raised-button color="primary">eliminar</button>
             </div>
             <div class="row justify-content-end pb-3">
-                <button mat-raised-button color="primary">Liquidar</button>
+                <button mat-raised-button class="botones" [routerLink]="['/Liquidacion']" >Liquidar</button>
             </div>
             
         </div>
