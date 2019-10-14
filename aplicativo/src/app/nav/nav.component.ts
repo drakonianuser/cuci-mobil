@@ -11,33 +11,16 @@ export class NavComponent implements OnInit {
 
   background = 'primary';
 
-  constructor() { 
-    this.links =[
-      {
-        name:"Registrar entrada",
-        path:"/registroVehiculo"
-
-      },
-      {
-        name:"Parametrización",
-        path:"/editarServicio"
-      },
-      {
-        name:"Turnos",
-        path:"/vehiculosIngresados"
-      },
-      {
-        name:"Generar reporte",
-        path:"/Reportes"
-      },
-      {
-        name:"Cerrar sesión",
-        path:"/"
-      },
-    ]
+  constructor() {
+    this.links = [
+      { name: 'Registrar entrada', path: '/registroVehiculo' },
+      { name: 'Parametrización', path: '/editarServicio' },
+      { name: 'Turnos', path: '/vehiculosIngresados' },
+      { name: 'Generar reporte', path: '/Reportes' },
+      { name: 'Cerrar sesión', path: '/' }
+    ];
   }
 
   ngOnInit() {
   }
-
 }

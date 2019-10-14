@@ -1,36 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-export interface factura{
-  NR:String,
-  Nombre:String,
-  precio: number
+export interface Factura {
+  NR: string;
+  Nombre: string;
+  precio: number;
 }
 
-const DataElement: factura[] =[
-  {
-    NR:"1",
-    Nombre:"lavado",
-    precio:10.000
-  },
-  {
-    NR:"2",
-    Nombre:"Cambio Aceite",
-    precio:10.000
-  },
-  {
-    NR:"3",
-    Nombre:"revision tecnica",
-    precio:10.000
-  },
-  {
-    NR:"4",
-    Nombre:"cambio llantas",
-    precio:10.000
-  },
-  {
-    NR:"5",
-    Nombre:"llantas",
-    precio:10.000
-  }
+const DataElement: Factura[] = [
+  { NR: '1', Nombre: 'lavado', precio: 10.000 },
+  { NR: '2', Nombre: 'Cambio Aceite', precio: 10.000 },
+  { NR: '3', Nombre: 'revision tecnica', precio: 10.000 },
+  { NR: '4', Nombre: 'cambio llantas', precio: 10.000 },
+  { NR: '5', Nombre: 'llantas', precio: 10.000 }
 ];
 @Component({
   selector: 'app-liquidacion',
@@ -40,14 +20,18 @@ const DataElement: factura[] =[
 
 
 export class LiquidacionComponent implements OnInit {
-    displayedColumns = [];
-    dataSource = DataElement
+  displayedColumns = [];
+  dataSource = DataElement;
+  descuento = 21;
   constructor() {
-   this.displayedColumns = ['NR','Nombre','precio'];
-   this.dataSource 
-   }
+    this.displayedColumns = ['NR', 'Nombre', 'precio'];
+  }
 
   ngOnInit() {
+  }
+
+  public getServices()  {
+    return this.dataSource.map(t => t.NR).length;
   }
 
   getTotalCost() {

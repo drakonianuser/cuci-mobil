@@ -9,7 +9,9 @@ img {
     height: 200px;
     width: 200px;
 }
-
+.full{
+    width: 100%;
+}
 .cuadro-titulo {
     font: bold 120% serif;
     text-align: center;
@@ -23,5 +25,9 @@ img {
 }
 
 table {
-    width: 100%;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
 }

@@ -1,107 +1,69 @@
 <app-nav></app-nav>
 <div class="container col-3 pt-5">
-    <div class="row justify-content-center">
-        <h1 class="titulos">Liquidacion</h1>
-    </div>
+  <div class="row justify-content-center">
+    <h1 class="titulos">Liquidacion</h1>
+  </div>
 </div>
 
-<!-- <div class="container contenedor p-5">
-    <div class="row bg-white">
-        <div class="container col-6">
-            <div class="row">
-                <label class="col-12 cuadro-titulo">Información</label>
-            </div>
-            <div class="row cuadro-informacion">
-                <label class="col-12">Tipo de vehiculo</label>
-            </div>
-            <div class="row cuadro-informacion">
-                <label class="col-12">placa</label>
-            </div>
-            <div class="row cuadro-informacion">
-                <label class="col-12">Documento cliente</label>
-            </div>
-            <div class="row cuadro-informacion">
-                <label class="col-12">Nombre cliente</label>
-            </div>
-            <div class="row cuadro-informacion">
-                <label class="col-12">Telefono</label>
-            </div>                          
-        </div>   
-        <div class="container col-6">
-            <div class="row justify-content-center">
-                <img src="../../../assets/logo.png">
-            </div>
-        </div> 
-    </div>
-
-
-
-    <div class="row bg-white">
-        <div class="col-9 cuadro-liquidacion">
-            <p class="pt-3">Fecha y hora inicio</p>
-            <p>Fecha y hora fin</p>
-            <p>Servicio1</p>
-            <p>Servicio2</p>
-            <p>Servicio3</p>
-            <p>total servicio</p>
-        </div>
-        <div class="col-3 cuadro-liquidacion">
-            <p class="pt-3">Total</p>
-            <p>total neto</p>
-            Turno
-        </div>
-    </div>   -->
+<!--   -->
 
 <ng-container class="container contenedor col-6 pb-3 pt-3">
-    <mat-card class=" container contenedor col-9 ">
-        <mat-grid-list cols="4" rowHeight="110px">
-            <mat-grid-tile rowspan=3 colspan=2>
-                <mat-list>
-                    <mat-list-item>Turno : 12</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item>Tipo de vehiculo: carro </mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item>placa: ABC123</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item>Documento cliente: 1234567890</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item>Nombre cliente: jhon doe</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item>Telefono: 1234551</mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-            </mat-grid-tile>
-            <mat-grid-tile rowspan=2 colspan=2>
-                <div><img src="../../../assets/logo.png"></div>
-            </mat-grid-tile>
-            <mat-grid-tile rowspan=4 colspan=3>
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                    <ng-container matColumnDef="NR">
-                        <th mat-header-cell *matHeaderCellDef> NR </th>
-                        <td mat-cell *matCellDef="let element"> {{element.NR}} </td>
-                        <td mat-footer-cell *matFooterCellDef>Cantida servicios: </td>
-                    </ng-container>
-                    <ng-container matColumnDef="Nombre">
-                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
-                        <td mat-footer-cell *matFooterCellDef> Total </td>
-                    </ng-container>
-                    <ng-container matColumnDef="precio">
-                        <th mat-header-cell *matHeaderCellDef> precio </th>
-                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
-                        <td mat-footer-cell *matFooterCellDef> total </td>
-                    </ng-container>
+  <mat-card class=" container contenedor col-9 ">
+    <mat-grid-list cols="4" rowHeight="110px">
+      <mat-grid-tile rowspan="3" colspan="2">
+        <mat-list>
+          <mat-list-item>Turno : 12</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Tipo de vehiculo: carro </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>placa: ABC123</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Documento cliente: 1234567890</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Nombre cliente: jhon doe</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Telefono: 1234551</mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="2" colspan="2">
+        <div><img src="../../../assets/logo.png" /></div>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="4" colspan="4">
+        <div class="mat-elevation-z8 full" >
+          <table mat-table [dataSource]="dataSource" >
+            <ng-container matColumnDef="NR">
+              <th mat-header-cell *matHeaderCellDef>NR</th>
+              <td mat-cell *matCellDef="let element">{{ element.NR }}</td>
+              <td mat-footer-cell *matFooterCellDef>
+                Cantida servicios:{{ getServices() }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="Nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let element">{{ element.Nombre }}</td>
+              <td mat-footer-cell *matFooterCellDef>Descuento:{{descuento}}</td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>precio</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.precio | currency }}
+              </td>
+              <td mat-footer-cell *matFooterCellDef>
+                Total:{{ getTotalCost() | currency }}
+              </td>
+            </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-                </table>
-            </mat-grid-tile>
-            <mat-grid-tile rowspan=2 colspan=1>
-                <mat-card>
-
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </mat-card>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+          </table>
+          <mat-paginator [pageSize]="10" [length]="getServices()"></mat-paginator>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="1" colspan="4">
+        <button mat-raised-button color="primary">Liquidar</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
 </ng-container>
