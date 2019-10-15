@@ -1,7 +1,7 @@
 import express, {Application} from "express";
 import morgan from 'morgan';
 import cors from "cors";
-
+import indexRoutes from "./routes/indexRoutes";
 
 
 class Server {
@@ -23,7 +23,7 @@ class Server {
 
     //rutas
     routes(): void {
-     
+     this.app.use('/',indexRoutes);
         
     }
     
