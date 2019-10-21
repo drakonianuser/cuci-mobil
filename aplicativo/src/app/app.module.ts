@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { MaterialModule } from "./material.module";
-
+import {HttpClientModule} from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +17,9 @@ import { VehiculosIngresadosComponent } from './admin/vehiculosIngresados/vehicu
 import { Reportes } from './reportes/reportes.component';
 import {RouterModule, Route} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {UsuariosService} from './services/usuarios.service'
+
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
@@ -50,9 +54,14 @@ const routes: Route[] = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    UsuariosService
+  ],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

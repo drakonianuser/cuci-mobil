@@ -15,18 +15,18 @@
 
     <div class="row justify-content-center">
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Usuario" type="email">
+            <input matInput placeholder="Usuario" type="email" name="usuario"[(ngModel)]= "usuario.USUARIO">
         </mat-form-field>
     </div>
 
     <div class="row justify-content-center p-4">    
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Contraseña" type="password">
+            <input matInput placeholder="Contraseña" type="password" name="correo"[(ngModel)]= "usuario.PASSWORD">
         </mat-form-field>
     </div>
     
     <div class="row justify-content-center pb-5">   
-        <button mat-raised-button color="primary" [routerLink]="['/registroVehiculo']">Ingresar</button>
+        <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
     </div>
 
 </form>

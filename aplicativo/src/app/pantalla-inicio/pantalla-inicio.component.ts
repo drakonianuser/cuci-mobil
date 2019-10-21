@@ -10,6 +10,7 @@ export class PantallaInicioComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.setItem("titulo","hola");
   }
 
 }
