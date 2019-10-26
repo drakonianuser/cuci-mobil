@@ -11,13 +11,16 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UsuariosService, private router: Router) { }
   usuario: usuario = {
-    idUSUARIOS: 0,
+    idUSUARIOS: null,
     USUARIO: '',
     PASSWORD: ''
   }
 
   usuarioObtenido: any = [];
   ngOnInit() {
+    localStorage.removeItem('usuario')
+    console.log(JSON.parse(localStorage.getItem('usuario')))
+
   }
 
   login(){
@@ -28,6 +31,9 @@ export class LoginComponent implements OnInit {
           console.log(this.usuarioObtenido)
           if(this.usuarioObtenido.PASSWORD == this.usuario.PASSWORD){
             this.router.navigateByUrl('/registroVehiculo')
+            localStorage.setItem('usuario', JSON.stringify(this.usuarioObtenido))
+            var usuarioS = JSON.parse(localStorage.getItem('usuario'))
+            console.log(usuarioS.USUARIO)
           }else{
             console.log("Credenciales invalidas")
           }
