@@ -6,16 +6,16 @@
 </div>
 <form class="example-form" class="container contenedor col-6 pb-3 pt-3">
     <mat-form-field class="input-mid-width" >
-        <input matInput placeholder="Buscar vehiculo*" value="">
+        <input matInput placeholder="Buscar vehiculo*" value="" [(ngModel)]='vehiculo.PLACA' name="PLACA">
     </mat-form-field>
-    <button mat-button class="botones" > Buscar</button>
+    <button mat-button class="botones" (click)="buscarVehiculo()" > Buscar</button>
     <table class="input-full-width"><tr>
     <td>
     <mat-form-field class="input-full-width" >
     <mat-label>Tipo Vehiculo*</mat-label>
-    <mat-select >
-        <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.value">
-         {{vehiculo.name}}
+    <mat-select [(value)]="selected" [disabled]="vehiculObtenido" [(ngModel)]='vehiculo.TIPO_VEHICULO_ID_TIPO_VEHICULO' name="ID_ESTADO">
+        <mat-option *ngFor="let vehiculo of tipoVehiculos" [value]="vehiculo.ID_TIPO_VEHICULO">
+         {{vehiculo.NOMBRE}} 
         </mat-option>
     </mat-select>
     </mat-form-field>
@@ -53,5 +53,5 @@
     </table>
     </ng-container>
     
-    <button mat-button class="botones" [routerLink]="['/inicio/registrarEntrada']">Asignar servicios</button>
-</form>
+    <button mat-button class="botones" (click)="registrarVehiculo()">Asignar servicios</button>
+</form> 

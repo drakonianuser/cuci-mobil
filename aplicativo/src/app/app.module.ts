@@ -19,7 +19,8 @@ import {RouterModule, Route} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {UsuariosService} from './services/usuarios.service'
-
+import {TipoVehiculoService} from './services/tipo-vehiculo.service'
+import { VehiculoService} from './services/vehiculo.service'
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
@@ -59,7 +60,9 @@ const routes: Route[] = [
     FormsModule
   ],
   providers: [
-    UsuariosService
+    UsuariosService,
+    TipoVehiculoService,
+    VehiculoService
   ],
   bootstrap: [AppComponent]
   
