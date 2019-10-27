@@ -2,12 +2,22 @@ import { Request, Response } from "express";
 
 import pool from "../database";
 
-class IndexController {
+class vehiculoController {
 
-    public index (req: Request, res: Response){
-        pool.query('Describe auditoria');
-        res.json('games');
+    public async create(req: Request, res: Response): Promise<any>{
+        await pool.query('insert into vehiculo set ?', [req.body]);
+        res.json({message: 'vehiculo creado'})
+    }
+
+    public async getOne (req: Request, res: Response): Promise<any>{
+        const {PLACA} = req.params;
+        const vehiculo = await pool.query('SELECT * FROM vehiculo WHERE PLACA = ?',[PLACA])
+        console.log('SELECT * FROM usuarios WHERE PLACA = ?',[PLACA])
+        if(vehiculo.length>0){
+            return res.json(vehiculo[0]);
+        }
+        res.status(404).json({text: 'Ese vehiculo no se encuentra registrado'})
     }
 } 
 
-export const indexcontroller = new IndexController();
+export const vehiculocontroller = new vehiculoController();

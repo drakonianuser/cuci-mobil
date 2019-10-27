@@ -4,10 +4,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class IndexController {
-    index(req, res) {
-        database_1.default.query('Describe auditoria');
-        res.json('games');
+class vehiculoController {
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('insert into vehiculo set ?', [req.body]);
+            res.json({ message: 'vehiculo creado' });
+        });
+    }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { PLACA } = req.params;
+            const vehiculo = yield database_1.default.query('SELECT * FROM vehiculo WHERE PLACA = ?', [PLACA]);
+            console.log('SELECT * FROM usuarios WHERE PLACA = ?', [PLACA]);
+            if (vehiculo.length > 0) {
+                return res.json(vehiculo[0]);
+            }
+            res.status(404).json({ text: 'Ese vehiculo no se encuentra registrado' });
+        });
     }
 }
-exports.indexcontroller = new IndexController();
+exports.vehiculocontroller = new vehiculoController();

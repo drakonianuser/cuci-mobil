@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -11,14 +11,29 @@ export class NavComponent implements OnInit {
 
   background = 'primary';
 
-  constructor() {
-    this.links = [
-      { name: 'Registrar entrada', path: '/registroVehiculo' },
-      { name: 'Parametrización', path: '/editarServicio' },
-      { name: 'Turnos', path: '/vehiculosIngresados' },
-      { name: 'Generar reporte', path: '/Reportes' },
-      { name: 'Cerrar sesión', path: '/' }
-    ];
+  constructor(private router: Router) {
+    var usuarioS = JSON.parse(localStorage.getItem('usuario'))
+    if(usuarioS==null){
+      this.router.navigateByUrl('/')
+    }
+    var usuarioS = JSON.parse(localStorage.getItem('usuario'))
+    console.log(usuarioS.USUARIO)
+    if (usuarioS.USUARIO == 'admin') {
+      this.links = [
+        { name: 'Registrar entrada', path: '/registroVehiculo' },
+        { name: 'Parametrización', path: '/editarServicio' },
+        { name: 'Turnos', path: '/vehiculosIngresados' },
+        { name: 'Generar reporte', path: '/Reportes' },
+        { name: 'Cerrar sesión', path: '/' }
+      ];
+    } else if(usuarioS.USUARIO == 'operario'){
+      this.links = [
+        { name: 'Registrar entrada', path: '/registroVehiculo' },
+        { name: 'Turnos', path: '/vehiculosIngresados' },
+        { name: 'Generar reporte', path: '/Reportes' },
+        { name: 'Cerrar sesión', path: '/' }
+      ];
+    }
   }
 
   ngOnInit() {

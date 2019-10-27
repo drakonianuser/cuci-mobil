@@ -1,7 +1,8 @@
 import { Router } from "express";
 
-import { indexcontroller} from "../controllers/indexController";
-class  IndexRoutes {
+import { vehiculocontroller} from "../controllers/vehiculoController"
+class  VehiculoRoutes {
+
 
     public router: Router = Router();
     constructor() {
@@ -9,9 +10,10 @@ class  IndexRoutes {
     }
     
     config(): void{
-        this.router.get('/', indexcontroller.index);
+        this.router.get('/:PLACA', vehiculocontroller.getOne);
+        this.router.post('/', vehiculocontroller.create);
     }
 }
 
-const indexRoutes = new IndexRoutes();
-export default indexRoutes.router;
+const vehiculoRoutes = new VehiculoRoutes();
+export default vehiculoRoutes.router;
