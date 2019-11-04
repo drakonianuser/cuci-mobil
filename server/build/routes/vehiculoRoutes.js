@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-
 const vehiculoController_1 = require("../controllers/vehiculoController");
 class VehiculoRoutes {
     constructor() {
