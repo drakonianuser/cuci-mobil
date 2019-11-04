@@ -3,6 +3,7 @@ import { Router } from "express";
 import { vehiculocontroller} from "../controllers/vehiculoController"
 class  VehiculoRoutes {
 
+
     public router: Router = Router();
     constructor() {
         this.config();

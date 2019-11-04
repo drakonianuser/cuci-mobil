@@ -5,8 +5,8 @@ import pool from "../database";
 class IndexController {
 
     public index (req: Request, res: Response){
-        pool.query('Describe auditoria')
-        res.json('games')
+        pool.query('Describe auditoria');
+        res.json('games');
     }
 } 
 
