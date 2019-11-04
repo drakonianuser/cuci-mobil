@@ -6,7 +6,8 @@ import usuariosRoutes from "./routes/usuarioRoutes";
 import tipovehiculoRoutes from "./routes/tipoVehiculoRoutes";
 import vehiculoRoutes from "./routes/vehiculoRoutes";
 import clienteRoutes from "./routes/clienteRoutes";
-import clienteVehiculoRoutes from "./routes/clienteVehiculoRoutes"
+import clienteVehiculoRoutes from "./routes/clienteVehiculoRoutes";
+import servicioVehiculoRoutes from "./routes/servicioVehiculoRoutes";
 class Server {
     public app: Application
 
@@ -32,10 +33,11 @@ class Server {
      this.app.use('/api/vehiculo',vehiculoRoutes)
      this.app.use('/api/cliente',clienteRoutes)
      this.app.use('/api/clienteVehiculo',clienteVehiculoRoutes)
+     this.app.use('/api/servicioVehiculo',servicioVehiculoRoutes)
         
     }
     
-    //conecion 
+    //conecion  
     start():void {
         this.app.listen(this.app.get('port'), ()=>{
             console.log('Server en puerto', this.app.get('port'));

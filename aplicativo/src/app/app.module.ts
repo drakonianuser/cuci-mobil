@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UsuariosService} from './services/usuarios.service'
 import {TipoVehiculoService} from './services/tipo-vehiculo.service'
 import { VehiculoService} from './services/vehiculo.service'
+import {servicioVehiculoRegistrarEntradaService}from './services/servicio-vehiculo-registrar-entrada.service'
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
@@ -62,7 +63,8 @@ const routes: Route[] = [
   providers: [
     UsuariosService,
     TipoVehiculoService,
-    VehiculoService
+    VehiculoService,
+    servicioVehiculoRegistrarEntradaService
   ],
   bootstrap: [AppComponent]
   

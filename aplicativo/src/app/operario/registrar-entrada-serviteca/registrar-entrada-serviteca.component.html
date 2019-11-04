@@ -5,7 +5,11 @@
     </div>
 </div>
 <div class="container contenedor col-7 p-5">
-
+    <div>
+        <div class="row justify-content-center">
+            <h2>Placa</h2>
+        </div>
+    </div>
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
@@ -32,14 +36,16 @@
             <mat-checkbox (change)="$event ? masterToggle() : null"
                             [checked]="selection.hasValue() && isAllSelected()"
                             [indeterminate]="selection.hasValue() && !isAllSelected()"
-                            [aria-label]="checkboxLabel()" color="primary">
+                            [aria-label]="checkboxLabel()" color="primary"
+                            >
             </mat-checkbox>
             </th>
             <td mat-cell *matCellDef="let row">
             <mat-checkbox (click)="$event.stopPropagation()"
                             (change)="$event ? selection.toggle(row) : null"
                             [checked]="selection.isSelected(row)"
-                            [aria-label]="checkboxLabel(row)" color="primary">
+                            [aria-label]="checkboxLabel(row)" color="primary"
+                            (click)="leer(row)">
             </mat-checkbox>
             </td>
         </ng-container>
@@ -48,4 +54,24 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    <table cellpadding="10">
+        <tr>
+            <td>
+                <h2>Total:</h2>
+            </td> 
+            <td>
+                <h2 style="text-decoration: underline; float: rigth;"  name='precio'>{{precios}}</h2>
+            </td> 
+            <td>
+                <h2>Descuento:</h2>
+            </td>
+            <td>
+                <h2>No Aplica</h2>
+            </td>
+            <td>
+                    <button (click)="comprobar()">Guardar</button>
+            </td>
+        </tr>
+    </table>
 </div>

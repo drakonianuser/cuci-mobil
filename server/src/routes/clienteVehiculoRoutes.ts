@@ -11,7 +11,7 @@ class  ClienteVehiculoRoutes {
     config(): void{
         this.router.get('/:ID', clienteVehiculoController.getOne);
         this.router.post('/', clienteVehiculoController.create);
-        this.router.put('/', clienteVehiculoController.update);
+        this.router.put('/:ID', clienteVehiculoController.update);
     }
 }
 

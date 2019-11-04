@@ -20,9 +20,9 @@ class ClienteController {
         res.status(404).json({text: 'no hay clientes'})
     }
 
-    public async create(req: Request, res: Response): Promise<void>{
+    public async create(req: Request, res: Response): Promise<any>{
         await pool.query('INSERT INTO cliente set ?', [req.body]);
-        res.json({message: 'Usuario guardado'});
+        return res.json({message: 'Usuario guardado'});
     }
 
     public async update(req: Request, res:Response): Promise<void>{

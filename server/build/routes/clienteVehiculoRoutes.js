@@ -10,7 +10,7 @@ class ClienteVehiculoRoutes {
     config() {
         this.router.get('/:ID', clienteVehiculoController_1.clienteVehiculoController.getOne);
         this.router.post('/', clienteVehiculoController_1.clienteVehiculoController.create);
-        this.router.put('/', clienteVehiculoController_1.clienteVehiculoController.update);
+        this.router.put('/:ID', clienteVehiculoController_1.clienteVehiculoController.update);
     }
 }
 const clienteVehiculoRoutes = new ClienteVehiculoRoutes();

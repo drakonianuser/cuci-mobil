@@ -12,6 +12,7 @@ const tipoVehiculoRoutes_1 = __importDefault(require("./routes/tipoVehiculoRoute
 const vehiculoRoutes_1 = __importDefault(require("./routes/vehiculoRoutes"));
 const clienteRoutes_1 = __importDefault(require("./routes/clienteRoutes"));
 const clienteVehiculoRoutes_1 = __importDefault(require("./routes/clienteVehiculoRoutes"));
+const servicioVehiculoRoutes_1 = __importDefault(require("./routes/servicioVehiculoRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -33,8 +34,9 @@ class Server {
         this.app.use('/api/vehiculo', vehiculoRoutes_1.default);
         this.app.use('/api/cliente', clienteRoutes_1.default);
         this.app.use('/api/clienteVehiculo', clienteVehiculoRoutes_1.default);
+        this.app.use('/api/servicioVehiculo', servicioVehiculoRoutes_1.default);
     }
-    //conecion 
+    //conecion  
     start() {
         this.app.listen(this.app.get('port'), () => {
             console.log('Server en puerto', this.app.get('port'));

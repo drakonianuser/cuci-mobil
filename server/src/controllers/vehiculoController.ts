@@ -6,7 +6,7 @@ class vehiculoController {
 
     public async create(req: Request, res: Response): Promise<any>{
         await pool.query('insert into vehiculo set ?', [req.body]);
-        res.json({message: 'vehiculo creado'})
+        return res.json({message: 'vehiculo creado'})
     }
 
     public async getOne (req: Request, res: Response): Promise<any>{

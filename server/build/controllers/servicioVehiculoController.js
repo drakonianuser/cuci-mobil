@@ -12,23 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class vehiculoController {
-    create(req, res) {
+class ServicioVehiculoController {
+    getServiciosVehiculo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('insert into vehiculo set ?', [req.body]);
-            return res.json({ message: 'vehiculo creado' });
-        });
-    }
-    getOne(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { PLACA } = req.params;
-            const vehiculo = yield database_1.default.query('SELECT * FROM vehiculo WHERE PLACA = ?', [PLACA]);
-            console.log('SELECT * FROM usuarios WHERE PLACA = ?', [PLACA]);
-            if (vehiculo.length > 0) {
-                return res.json(vehiculo[0]);
+            const { ID } = req.params;
+            const servicioVehiculo = yield database_1.default.query('SELECT SV.ID_SERVICIOS_VEHICULO, SV.VALOR, SV.ACTIVO, S.NOMBRE_SERVICIO FROM servicios_vehiculo SV INNER JOIN servicios S ON (S.ID_SERVICIO = SV.SERVICIOS_ID_SERVICIO) WHERE SV.ACTIVO = "S" AND SV.TIPO_VEHICULO_ID_TIPO_VEHICULO = ?', [ID]);
+            if (servicioVehiculo.length > 0) {
+                return res.json(servicioVehiculo);
             }
-            res.status(404).json({ text: 'Ese vehiculo no se encuentra registrado' });
+            res.status(404).json({ text: 'no hay vehiculoServicio' });
         });
     }
 }
-exports.vehiculocontroller = new vehiculoController();
+exports.servicioVehiculoController = new ServicioVehiculoController();

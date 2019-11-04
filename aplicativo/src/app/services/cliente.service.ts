@@ -13,7 +13,7 @@ export class ClienteService {
     return this.http.get(`${this.API_URI}/cliente/${ID}`);
   }
 
-  createVehiculo(cliente: cliente){
+  createCliente(cliente: cliente){
     return this.http.post(`${this.API_URI}/cliente`,cliente);
   }
 

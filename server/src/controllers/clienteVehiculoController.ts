@@ -7,7 +7,6 @@ class ClienteVehiculoController {
     public async getOne (req: Request, res: Response): Promise<any>{
         const {ID} = req.params;
         const clienteVehiculo = await pool.query('SELECT * FROM CLIENTE_VEHICULO WHERE VEHICULO_ID_VEHICULO = ?',[ID])
-        console.log('SELECT * FROM cliente WHERE ID_CLIENTE = ?',[ID])
         if(clienteVehiculo.length>0){
             return res.json(clienteVehiculo[0]);
         }
@@ -20,8 +19,9 @@ class ClienteVehiculoController {
     }
 
     public async update(req: Request, res:Response): Promise<void>{
-        const {id} = req.params;
-        await pool.query('UPDATE cliente_vehiculo set ? WHERE ID_CLIENTE_VEHICULO = ?',[req.body, id]);
+        const {ID} = req.params;
+        await pool.query('UPDATE cliente_vehiculo set ? WHERE ID_CLIENTE_VEHICULO = ?',[req.body, ID]);
+        console.log(ID)
         res.json({message: 'el clienteVehiculo fue actualizado'});
     }
 } 
