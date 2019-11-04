@@ -18,6 +18,9 @@ import { Reportes } from './reportes/reportes.component';
 import {RouterModule, Route} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {DetalleFacturaService} from './services/detalle-factura.service'
+import {FacturaService} from './services/factura.service'
+import {DescuentoService} from './services/descuento.service'
 import {UsuariosService} from './services/usuarios.service'
 import {TipoVehiculoService} from './services/tipo-vehiculo.service'
 import { VehiculoService} from './services/vehiculo.service'
@@ -25,7 +28,7 @@ import {servicioVehiculoRegistrarEntradaService}from './services/servicio-vehicu
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
-  {path: 'inicio/registrarEntrada', component: RegistrarEntradaServitecaComponent}, 
+  {path: 'registrarEntrada', component: RegistrarEntradaServitecaComponent}, 
 
   {path: 'registroVehiculo', component: RegistroVehiculoComponent},
   {path: 'nav', component: NavComponent},
@@ -64,7 +67,10 @@ const routes: Route[] = [
     UsuariosService,
     TipoVehiculoService,
     VehiculoService,
-    servicioVehiculoRegistrarEntradaService
+    servicioVehiculoRegistrarEntradaService,
+    DescuentoService,
+    FacturaService,
+    DetalleFacturaService
   ],
   bootstrap: [AppComponent]
   
