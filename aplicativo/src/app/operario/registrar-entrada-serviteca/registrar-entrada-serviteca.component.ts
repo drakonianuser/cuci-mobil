@@ -23,14 +23,8 @@ export interface elemento {
 })
 export class RegistrarEntradaServitecaComponent implements OnInit{
   vehiculoObtenido: any = [];
-  elemento: elemento = {
-    servicios: "servicio",
-    precio: 3,
-    id: 2
-  }
   resultado: any=[];
   ELEMENT_DATA: elemento[] = [
-    
   ];
   factura: factura = {
     ID_FACTURA: 0,
@@ -39,7 +33,7 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
     TOTAL_NETO: "",
     TURNO: "",
     FECHA_ENTRADA: null,
-    FECHA_SALIDA: "",
+    FECHA_SALIDA: null,
     ACTIVO: "",
     VEHICULO_ID_VEHICULO: 0,
     TIPO_ESTADO_ID_TIPO_ESTADO: 0,
@@ -59,6 +53,9 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
   facturaObtenida: any=[]
   precios = 0;
   encendidos = 0;
+  IDdescuento = 0;
+  numeroDescuento = "No Aplica";
+  precioNeto = 0;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   constructor(private router: Router,private DetalleFacturaService: DetalleFacturaService,private FacturaService: FacturaService,private DescuentoService: DescuentoService,private servicioVehiculoRegistrarEntradaService: servicioVehiculoRegistrarEntradaService) {
@@ -129,6 +126,7 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
       
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+      this.calcularPrecio(this.precios, this.encendidos)
     }
   
    
@@ -140,23 +138,9 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
     }
 
     registrarFactura(){
-      var IDdescuento=0;
-      var porcentajeDescuento=0;
-      this.descuento.forEach(descuento=>{
-        if(this.selection.selected.length >= descuento.CANTIDAD_SERVICIOS){
-          IDdescuento = descuento.ID_DESCUENTOS;
-          porcentajeDescuento = descuento.PORCENTAJE_DESCUENTO;
-        }
-      })
       this.factura.TOTAL = this.precios.toString();
-      if(IDdescuento!=0){
-        var descuento = this.calcularPrecio(porcentajeDescuento, this.precios);
-        this.factura.TOTAL_NETO = descuento.toString();
-      }else{
-        this.factura.TOTAL_NETO = this.factura.TOTAL;
-      }
-      
-      this.factura.DESCUENTOS_ID_DESCUENTOS = IDdescuento;
+      this.factura.TOTAL_NETO = this.calcularPrecio(this.precios, this.encendidos).toString();
+      this.factura.DESCUENTOS_ID_DESCUENTOS = this.IDdescuento;
       var Dates = new Date();
       this.factura.TURNO = this.generarTurno(Dates)
       this.FacturaService.createFactura(this.factura)
@@ -167,7 +151,7 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
               .subscribe(
                 res=>{
                   this.facturaObtenida = res;
-                  this.asignarServicios(this.facturaObtenida.ID_FACTURA)
+                  this.asignarServicios()
                 }
               )
           }
@@ -183,12 +167,26 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
         this.precios = this.precios+row.precio;
         this.encendidos = this.encendidos+1
       }
+      this.calcularPrecio(this.precios, this.encendidos)
     }
 
-    calcularPrecio(porcentaje: number, precio: number){
-      var descuento = porcentaje/100;
+    calcularPrecio(precio: number, numero: number){
+      var porcentajeDescuento = 0;
+      this.descuento.forEach(descuento=>{
+        if(numero >= descuento.CANTIDAD_SERVICIOS){
+          this.IDdescuento = descuento.ID_DESCUENTOS;
+          porcentajeDescuento = descuento.PORCENTAJE_DESCUENTO;
+        }
+      })
+      if(porcentajeDescuento!=0){
+        this.numeroDescuento = porcentajeDescuento.toString()+"%"
+      }else{
+        this.numeroDescuento = "No Aplica"
+      }
+      var descuento = porcentajeDescuento/100;
       descuento = descuento*precio;
       descuento = precio-descuento
+      this.precioNeto = descuento;
       return descuento;
     }
 
@@ -197,7 +195,7 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
       return fecha
     }
 
-    asignarServicios(numero: number){
+    asignarServicios(){
       this.detalle.FACTURA_ID_FACTURA = this.facturaObtenida.ID_FACTURA
       this.dataSource.data.forEach(row=>{
         if(this.selection.isSelected(row)){
@@ -208,10 +206,11 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
             .subscribe(
               res=>{
                 console.log(res)
-              }
+              } 
             )
         }
       })
+      alert("Su turno es: "+this.factura.TURNO)
       this.router.navigateByUrl('/vehiculosIngresados')
     }
 }

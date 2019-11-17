@@ -21,6 +21,7 @@ class ClienteController {
     }
 
     public async create(req: Request, res: Response): Promise<any>{
+        console.log(req.body)
         await pool.query('INSERT INTO cliente set ?', [req.body]);
         return res.json({message: 'Usuario guardado'});
     }

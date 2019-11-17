@@ -16,7 +16,6 @@ export class NavComponent implements OnInit {
     if(usuarioS==null){
       this.router.navigateByUrl('/')
     }
-    var usuarioS = JSON.parse(localStorage.getItem('usuario'))
     console.log(usuarioS.USUARIO)
     if (usuarioS.USUARIO == 'admin') {
       this.links = [

@@ -8,6 +8,7 @@ import {cliente} from '../../models/cliente';
 import {clienteXVehiculo} from '../../models/clienteXVehiculo';
 import {ClienteVehiculoService} from '../../services/cliente-vehiculo.service';
 import {ClienteService} from '../../services/cliente.service';
+import {FacturaService} from '../../services/factura.service'
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-registro-vehiculo',
@@ -55,7 +56,7 @@ export class RegistroVehiculoComponent implements OnInit {
   vehiculoObtenido: any = [];
   clienteObtenido: any = [];
   clientexVehiculo: any=[];
-  constructor(private tipoVehiculoService: TipoVehiculoService, private VehiculoService: VehiculoService
+  constructor(private facturaService: FacturaService,private tipoVehiculoService: TipoVehiculoService, private VehiculoService: VehiculoService
     ,private clienteService: ClienteService,private clienteVehiculoService: ClienteVehiculoService, private router: Router) {
     this.tipoVehiculoService.getAll()
       .subscribe(
@@ -119,18 +120,27 @@ export class RegistroVehiculoComponent implements OnInit {
   }
 
   buscarVehiculo(){
-    this.VehiculoService.getOneVehiculo(this.vehiculo.PLACA)
+    this.facturaService.getDisponible(this.vehiculo.PLACA)
       .subscribe(
-        res =>{
-          this.vehiculoObtenido = res;
-          this.vehiculo = this.vehiculoObtenido;
-          this.vehiculObtenido = true;
+        res=>{
+          alert("El vehiculo se encuentra en la serviteca")
         },
-        err => {
-          this.vehiculObtenido = false;
-          this.vehiculo.ID_VEHICULO = 0;
+        err=>{
+          this.VehiculoService.getOneVehiculo(this.vehiculo.PLACA)
+          .subscribe(
+            res =>{
+              this.vehiculoObtenido = res;
+              this.vehiculo = this.vehiculoObtenido;
+              this.vehiculObtenido = true;
+            },
+            err => {
+              this.vehiculObtenido = false;
+              this.vehiculo.ID_VEHICULO = 0;
+            }
+          )
         }
       )
+
   }
 
   buscarCliente(){
@@ -153,6 +163,7 @@ export class RegistroVehiculoComponent implements OnInit {
   }
 
   crearCliente(){
+    console.log(this.cliente.CEDULA)
     console.log("creo cliente")
     this.clienteService.createCliente(this.cliente)
     .subscribe(

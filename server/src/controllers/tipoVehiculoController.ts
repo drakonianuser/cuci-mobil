@@ -9,9 +9,9 @@ class tipoVehiculoController {
         console.log('SELECT * FROM tipo_vehiculo') 
         if(tipo_vehiculo.length>0){
             return res.json(tipo_vehiculo);
-        }
+        } 
         res.status(404).json({text: 'no hay tipos de vehiculos registrados'})
     } 
-} 
+}  
 
 export const tipovehiculocontroller = new tipoVehiculoController();

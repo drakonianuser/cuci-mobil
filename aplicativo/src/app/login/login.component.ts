@@ -35,8 +35,11 @@ export class LoginComponent implements OnInit {
             var usuarioS = JSON.parse(localStorage.getItem('usuario'))
             console.log(usuarioS.USUARIO)
           }else{
-            console.log("Credenciales invalidas")
+            alert("Credenciales invalidas")
           }
+        },
+        err=>{
+          alert("Credenciales invalidas")
         }
       )
   }

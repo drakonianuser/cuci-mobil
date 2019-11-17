@@ -12,7 +12,8 @@ class FacturaRoutes {
         this.router.get('/:ID', facuraController_1.facturaController.getOne);
         this.router.post('/', facuraController_1.facturaController.create);
         this.router.put('/:ID', facuraController_1.facturaController.update);
-        this.router.delete('/:ID', facuraController_1.facturaController.delete);
+        this.router.delete('/:TURNO', facuraController_1.facturaController.delete);
+        this.router.get('/disponible/:PLACA', facuraController_1.facturaController.getDisponible);
     }
 }
 const facturaRoutes = new FacturaRoutes();

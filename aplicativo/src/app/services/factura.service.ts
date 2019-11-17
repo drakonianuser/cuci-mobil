@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {factura} from '../models/factura';
+import {facturaUpdate} from '../models/facturaUpdate';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,12 +21,15 @@ export class FacturaService {
     return this.http.post(`${this.API_URI}/factura`,factura);
   }
 
-  updateFactura(ID: number, factura: factura){
+  updateFactura(ID: number, factura: facturaUpdate){
+    console.log(factura)
     return this.http.put(`${this.API_URI}/factura/${ID}`,factura)
   }
 
-  deleteFactura(ID:number){
-    return this.http.get(`${this.API_URI}/factura/${ID}`);
-
+  deleteFactura(TURNO:string){
+    return this.http.delete(`${this.API_URI}/factura/${TURNO}`);
+  }
+  getDisponible(PLACA:string){
+    return this.http.get(`${this.API_URI}/factura/disponible/${PLACA}`)
   }
 }

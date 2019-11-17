@@ -6,7 +6,7 @@ class DetalleFacturaController {
 
     public async getAll (req: Request, res: Response): Promise<any>{
         const {ID} = req.params;
-        const facturas = await pool.query('SELECT DT.ID_DETALLE_FACTURA, SV.VALOR, S.NOMBRE_SERVICIO FROM detalle_factura DT INNER JOIN SERVICIOS_VEHICULO SV ON (DT.SERVICIOS_VEHICULO_ID_SERVICIOS_VEHICULO = SV.SERVICIOS_ID_SERVICIO) INNER JOIN SERVICIOS S ON (SV.SERVICIOS_ID_SERVICIO = S.ID_SERVICIO) WHERE DT.FACTURA_ID_FACTURA = ?',[ID])
+        const facturas = await pool.query('SELECT DT.ID_DETALLE_FACTURA, SV.VALOR, S.NOMBRE_SERVICIO FROM detalle_factura DT INNER JOIN SERVICIOS_VEHICULO SV ON (DT.SERVICIOS_VEHICULO_ID_SERVICIOS_VEHICULO = SV.ID_SERVICIOS_VEHICULO) INNER JOIN SERVICIOS S ON (SV.SERVICIOS_ID_SERVICIO = S.ID_SERVICIO) WHERE DT.FACTURA_ID_FACTURA = ?',[ID])
         if(facturas.length>0){
             return res.json(facturas)
         }

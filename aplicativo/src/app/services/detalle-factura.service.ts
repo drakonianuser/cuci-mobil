@@ -8,8 +8,8 @@ export class DetalleFacturaService {
 
   API_URI = 'http://localhost:3000/api';
   constructor(private http: HttpClient) { }
-  getAll(){
-    return this.http.get(`${this.API_URI}/detalleFactura`);
+  getAll(ID: number){
+    return this.http.get(`${this.API_URI}/detalleFactura/${ID}`);
   }
 
   createDetalleFactura(detalleFactura: DetalleFactura){
