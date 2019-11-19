@@ -25,6 +25,9 @@ import {UsuariosService} from './services/usuarios.service'
 import {TipoVehiculoService} from './services/tipo-vehiculo.service'
 import { VehiculoService} from './services/vehiculo.service'
 import {servicioVehiculoRegistrarEntradaService}from './services/servicio-vehiculo-registrar-entrada.service'
+
+
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
@@ -48,7 +51,6 @@ const routes: Route[] = [
     RegistroVehiculoComponent,
     RegistrarEntradaServitecaComponent,
     LiquidacionComponent,
-    NavComponent,
     EditarVehiculoComponent,
     EditarServicioComponent,
     VehiculosIngresadosComponent,
@@ -61,7 +63,8 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NavComponent
   ],
   providers: [
     UsuariosService,
@@ -72,6 +75,7 @@ const routes: Route[] = [
     FacturaService,
     DetalleFacturaService
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
   
 })

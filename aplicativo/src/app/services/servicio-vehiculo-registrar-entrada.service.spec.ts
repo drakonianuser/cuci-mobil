@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ServicioVehiculoRegistrarEntradaService } from './servicio-vehiculo-registrar-entrada.service';
+import { servicioVehiculoRegistrarEntradaService } from './servicio-vehiculo-registrar-entrada.service';
+import {HttpClientModule} from '@angular/common/http'
 
 describe('ServicioVehiculoRegistrarEntradaService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [HttpClientModule]
+
+  }));
 
   it('should be created', () => {
-    const service: ServicioVehiculoRegistrarEntradaService = TestBed.get(ServicioVehiculoRegistrarEntradaService);
+    const service: servicioVehiculoRegistrarEntradaService = TestBed.get(servicioVehiculoRegistrarEntradaService);
     expect(service).toBeTruthy();
   });
 });

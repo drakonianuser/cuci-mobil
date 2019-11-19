@@ -69,7 +69,6 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
     this.factura.VEHICULO_ID_VEHICULO = this.datosFactura.VehiculoID;
     this.factura.TIPO_ESTADO_ID_TIPO_ESTADO = 2;
     this.factura.ACTIVO = 'S';
-    console.log(this.factura)
     this.servicioVehiculoRegistrarEntradaService.getOneClienteVehiculo(datosFactura.tipoVehiculo)
     .subscribe(
       res => { 

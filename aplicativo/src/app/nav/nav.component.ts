@@ -16,6 +16,7 @@ export class NavComponent implements OnInit {
     if(usuarioS==null){
       this.router.navigateByUrl('/')
     }
+    usuarioS.USUARIO = "admin"
     console.log(usuarioS.USUARIO)
     if (usuarioS.USUARIO == 'admin') {
       this.links = [
