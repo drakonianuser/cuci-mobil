@@ -7,7 +7,7 @@
 <div class="container contenedor col-7 p-5">
     <div>
         <div class="row justify-content-center">
-            <h2>Placa</h2>
+            <h2>{{datosFactura.Placa}}</h2>
         </div>
     </div>
     <mat-form-field>
@@ -61,16 +61,16 @@
                 <h2>Total:</h2>
             </td> 
             <td>
-                <h2 style="text-decoration: underline; float: rigth;"  name='precio'>{{precios}}</h2>
+                <h2 style="text-decoration: underline; float: rigth;"  name='precio'>{{precioNeto}}</h2>
             </td> 
             <td>
-                <h2>Descuento:</h2>
+                <h2>Descuento: </h2>
             </td>
             <td>
-                <h2>No Aplica</h2>
+                <h2>{{numeroDescuento}}</h2>
             </td>
             <td>
-                    <button (click)="comprobar()">Guardar</button>
+                    <button (click)="registrarFactura()">Guardar</button>
             </td>
         </tr>
     </table>

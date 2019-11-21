@@ -7,7 +7,7 @@
 <div class="container contenedor col-7 p-5">
 
         <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar por placa">
             </mat-form-field>
 
 <table mat-table
@@ -24,17 +24,19 @@
       <div class="example-element-detail"
            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
         <div >
-            <div class="row justify-content-start">----Servicios: {{element.servicios}}</div>
-            <div>{{element.servicio}}</div>
+            <div>Turno: {{element.turno}}</div>
         </div>
         <div class="container">
-            <div class="row justify-content-end">
-                <button mat-raised-button color="primary">eliminar</button>
+
+            <div class="row justify-content-end pb-3" *ngIf="element.estado=='En proceso'">
+                <button mat-raised-button class="botones" (click)="consultar(element)" >Terminar</button>
             </div>
-            <div class="row justify-content-end pb-3">
-                <button mat-raised-button class="botones" [routerLink]="['/Liquidacion']" >Liquidar</button>
+            <div class="row justify-content-end pb-3" *ngIf="element.estado=='Terminado'">
+                    <button mat-raised-button class="botones" (click)="consultar(element)">Liquidar</button>
             </div>
-            
+            <div class="row justify-content-end pb-3" *ngIf="administrador">
+                    <button mat-raised-button class="botones" (click)="eliminar(element) "color="primary"  >Eliminar</button>
+            </div>
         </div>
       </div>
     </td>
@@ -49,62 +51,4 @@
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    <!-- <div class="row  justify-content-center pt-5">
-        <div class="vehiculo col-9">
-            <p class="vehiculo">Ingresos</p>
-        </div>
-        
-    </div>
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>Vehiculo1</p>
-        </div>
-        <div class="col-3 cuadro">
-            <p>Estado</p>
-        </div>
-        <div class="col-3 cuadro">
-            <button class="iconos"><i class="fas fa-search"></i></button>
-            <br>
-            <button class="iconos"><i class="fas fa-file-invoice"></i></button>
-            <button class="iconos"><i class="fas fa-ban"></i></button>
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>vehiculo2</p>
-        </div>
-        <div class="col-3 cuadro">
-            <p>Estado</p>
-        </div>
-        <div class="col-3 cuadro">
-            <button class="iconos"><i class="fas fa-search"></i></button>
-            <br>
-            <button class="iconos"><i class="fas fa-file-invoice"></i></button>
-            <button class="iconos"><i class="fas fa-ban"></i></button>
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>vehiculo3</p>
-        </div>
-        <div class="col-3 cuadro">
-            <p>Estado</p>
-        </div>
-        <div class="col-3 cuadro">
-            <button class="iconos"><i class="fas fa-search"></i></button>
-            <br>
-            <button class="iconos"><i class="fas fa-file-invoice"></i></button>
-            <button class="iconos"><i class="fas fa-ban"></i></button>
-        </div>
-    </div> -->
-
-    <!-- <div class="row justify-content-end pt-4 pb-5">
-        <div class="col-3">
-            <button class="botones" [routerLink]="['/registroVehiculo']">
-                Guardar
-            </button>
-        </div>
-    </div> -->
 </div>

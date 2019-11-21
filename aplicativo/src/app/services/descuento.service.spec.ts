@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UsuariosService } from './usuarios.service';
+import { DescuentoService } from './descuento.service';
 import {HttpClientModule} from '@angular/common/http'
 
-describe('UsuariosService', () => {
+describe('DescuentoService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [HttpClientModule]
 
   }));
 
   it('should be created', () => {
-    const service: UsuariosService = TestBed.get(UsuariosService);
+    const service: DescuentoService = TestBed.get(DescuentoService);
     expect(service).toBeTruthy();
   });
 });

@@ -8,6 +8,8 @@ import {cliente} from '../../models/cliente';
 import {clienteXVehiculo} from '../../models/clienteXVehiculo';
 import {ClienteVehiculoService} from '../../services/cliente-vehiculo.service';
 import {ClienteService} from '../../services/cliente.service';
+import {FacturaService} from '../../services/factura.service'
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-registro-vehiculo',
   templateUrl: './registro-vehiculo.component.html',
@@ -44,11 +46,18 @@ export class RegistroVehiculoComponent implements OnInit {
     CLIENTE_ID_CLIENTE: 0
   }
 
+  datosFactura = {
+    clienteID: 0,
+    VehiculoID: 0,
+    Placa: "",
+    tipoVehiculo: 0
+  }
+
   vehiculoObtenido: any = [];
   clienteObtenido: any = [];
   clientexVehiculo: any=[];
-  constructor(private tipoVehiculoService: TipoVehiculoService, private VehiculoService: VehiculoService
-    ,private clienteService: ClienteService,private clienteVehiculoService: ClienteVehiculoService) {
+  constructor(private facturaService: FacturaService,private tipoVehiculoService: TipoVehiculoService, private VehiculoService: VehiculoService
+    ,private clienteService: ClienteService,private clienteVehiculoService: ClienteVehiculoService, private router: Router) {
     this.tipoVehiculoService.getAll()
       .subscribe(
         res => {
@@ -62,6 +71,13 @@ export class RegistroVehiculoComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+  almacenarDatosFactura(){
+    this.datosFactura.VehiculoID = this.vehiculo.ID_VEHICULO;
+    this.datosFactura.Placa = this.vehiculoObtenido.PLACA;
+    this.datosFactura.clienteID = this.cliente.ID_CLIENTE;
+    this.datosFactura.tipoVehiculo = this.vehiculo.TIPO_VEHICULO_ID_TIPO_VEHICULO;
+    localStorage.setItem('datosFactura', JSON.stringify(this.datosFactura))
   }
   registrarVehiculo(){
     if(this.vehiculo.ID_VEHICULO==0){
@@ -78,8 +94,11 @@ export class RegistroVehiculoComponent implements OnInit {
               this.vehiculObtenido = true;
               if(this.cliente.ID_CLIENTE==0 && this.stateCtrl==true){
                 this.crearCliente();
-              }else if(this.stateCtrl==true){
+              }else if(this.dueno==true){
                 this.crearClienteXVehiculo();
+              }else{
+                this.almacenarDatosFactura()
+                this.router.navigateByUrl('/registrarEntrada')
               }
             },
             err => {
@@ -92,24 +111,36 @@ export class RegistroVehiculoComponent implements OnInit {
       this.crearCliente();
     }else if(this.dueno==true){
       this.crearClienteXVehiculo();
+    }else{
+      this.almacenarDatosFactura()
+      this.router.navigateByUrl('/registrarEntrada')
     }
 
 
   }
 
   buscarVehiculo(){
-    this.VehiculoService.getOneVehiculo(this.vehiculo.PLACA)
+    this.facturaService.getDisponible(this.vehiculo.PLACA)
       .subscribe(
-        res =>{
-          this.vehiculoObtenido = res;
-          this.vehiculo = this.vehiculoObtenido;
-          this.vehiculObtenido = true;
+        res=>{
+          alert("El vehiculo se encuentra en la serviteca")
         },
-        err => {
-          this.vehiculObtenido = false;
-          this.vehiculo.ID_VEHICULO = 0;
+        err=>{
+          this.VehiculoService.getOneVehiculo(this.vehiculo.PLACA)
+          .subscribe(
+            res =>{
+              this.vehiculoObtenido = res;
+              this.vehiculo = this.vehiculoObtenido;
+              this.vehiculObtenido = true;
+            },
+            err => {
+              this.vehiculObtenido = false;
+              this.vehiculo.ID_VEHICULO = 0;
+            }
+          )
         }
       )
+
   }
 
   buscarCliente(){
@@ -124,7 +155,7 @@ export class RegistroVehiculoComponent implements OnInit {
         res=>{
           this.clienteObtenido = res;
           this.cliente = this.clienteObtenido;
-          this.clienteobtenido = true;
+          this.clienteobtenido = true; 
         }
       )
     }
@@ -132,6 +163,7 @@ export class RegistroVehiculoComponent implements OnInit {
   }
 
   crearCliente(){
+    console.log(this.cliente.CEDULA)
     console.log("creo cliente")
     this.clienteService.createCliente(this.cliente)
     .subscribe(
@@ -144,6 +176,9 @@ export class RegistroVehiculoComponent implements OnInit {
             this.clienteobtenido = true;
             if(this.dueno==true){
               this.crearClienteXVehiculo();
+            }else{
+              this.almacenarDatosFactura();
+              this.router.navigateByUrl('/registrarEntrada')
             }
           }
         )
@@ -165,15 +200,22 @@ export class RegistroVehiculoComponent implements OnInit {
             this.clienteVehiculoService.updateClienteVehiculo(this.clienteXVehiculo.ID_CLIENTE_VEHICULO, this.clienteXVehiculo)
             .subscribe(
               res=>{
+                this.almacenarDatosFactura();
+                this.router.navigateByUrl('/registrarEntrada')
+
               }
             )
           }
+          this.almacenarDatosFactura();
+          this.router.navigateByUrl('/registrarEntrada')
         },
         err=>{
           console.log("entro")
           this.clienteVehiculoService.createClienteVehiculo(this.clienteXVehiculo)
             .subscribe(
               res=>{
+                this.almacenarDatosFactura();
+                this.router.navigateByUrl('/registrarEntrada')
               }
             )
         }

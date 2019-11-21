@@ -1,32 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone  } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-
+import {FacturaService} from '../../services/factura.service';
+import {Router} from '@angular/router';
 export interface PeriodicElement {
   placa: string;
-  servicios: number;
   estado: string;
+  turno: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    servicios: 4,
-    placa: 'MMM123',
-    estado: "pendiente",
-
-  }, {
-    servicios: 2,
-    placa: 'JKL124',
-    estado: "finalizado",
-  }, {
-    servicios: 3,
-    placa: 'kkk340',
-    estado: 'pendiente',
-  },
-];
 
 @Component({
   selector: 'app-vehiculos-ingresados',
@@ -41,18 +26,60 @@ const ELEMENT_DATA: PeriodicElement[] = [
   ],
 })
 export class VehiculosIngresadosComponent implements OnInit {
-  columnsToDisplay = ['placa', 'estado'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  expandedElement: PeriodicElement | null;
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  administrador=  false;
 
+  ELEMENT_DATA: PeriodicElement[] = [
+
+  ];
+  resultado =null;
+  columnsToDisplay = ['placa', 'estado'];
+  dataSource = null;
+  expandedElement: PeriodicElement | null;
+  selection = null;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  constructor(private NgZone:NgZone,private router: Router,private facturaService: FacturaService){
+    localStorage.removeItem('datosFactura')
 
+    var usuarioS = JSON.parse(localStorage.getItem('usuario'))
+    if(usuarioS.USUARIO=="admin"){
+      this.administrador = true;
+    }
+    this.facturaService.getAllFactura()
+      .subscribe(
+        res=>{
+          this.resultado = res;
+          for (let index = 0; index < this.resultado.length; index++) {
+            var estados ="";
+            switch (this.resultado[index].TIPO_ESTADO_ID_TIPO_ESTADO) {
+              case 2:
+                  estados = "En proceso"
+                break;
+              case 3:
+                  estados = "Terminado"
+              default:
+                break;
+            }
+            this.ELEMENT_DATA.push({
+              placa: "Placa: "+this.resultado[index].PLACA,
+              estado: estados,
+              turno: this.resultado[index].TURNO
+            })
+          }
+          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+          this.selection = new SelectionModel<PeriodicElement>(true, []);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }, 
+        err=>{
+
+        }
+      )
+
+  }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
   }
 
   applyFilter(filterValue: string) {
@@ -72,13 +99,29 @@ export class VehiculosIngresadosComponent implements OnInit {
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
     }
-  
-   
+
     checkboxLabel(row?: PeriodicElement): string {
       if (!row) {
         return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
       }
       return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.placa+ 1}`;
+    }
+
+    consultar(row?: PeriodicElement){
+      console.log(row.placa)
+      localStorage.setItem('Turno', row.turno.toString())
+      this.router.navigateByUrl('/Liquidacion')
+    }
+    eliminar(row?: PeriodicElement){
+      console.log(row.turno)
+      this.facturaService.deleteFactura(row.turno.toString())
+        .subscribe(
+          res=>{
+            this.NgZone.runOutsideAngular(() =>{
+              location.reload();
+            });
+          }
+        )
     }
 }
 

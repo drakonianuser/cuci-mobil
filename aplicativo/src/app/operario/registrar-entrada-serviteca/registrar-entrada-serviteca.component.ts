@@ -3,7 +3,13 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {servicioVehiculoRegistrarEntradaService} from '../../services/servicio-vehiculo-registrar-entrada.service'
+import {factura} from '../../models/factura';
+import {FacturaService} from '../../services/factura.service'
+import {DescuentoService} from '../../services/descuento.service';
+import {DetalleFactura} from '../../models/detalleFactura';
+import {DetalleFacturaService} from '../../services/detalle-factura.service';
+import {Router} from '@angular/router';
+import {servicioVehiculoRegistrarEntradaService} from '../../services/servicio-vehiculo-registrar-entrada.service';
 export interface elemento {
   precio: number;
   servicios: string;
@@ -17,28 +23,53 @@ export interface elemento {
 })
 export class RegistrarEntradaServitecaComponent implements OnInit{
   vehiculoObtenido: any = [];
-  elemento: elemento = {
-    servicios: "servicio",
-    precio: 3,
-    id: 2
-  }
   resultado: any=[];
   ELEMENT_DATA: elemento[] = [
-
   ];
+  factura: factura = {
+    ID_FACTURA: 0,
+    CLIENTE_ID_CLIENTE: 0,
+    TOTAL: "",
+    TOTAL_NETO: "",
+    TURNO: "",
+    FECHA_ENTRADA: null,
+    FECHA_SALIDA: null,
+    ACTIVO: "",
+    VEHICULO_ID_VEHICULO: 0,
+    TIPO_ESTADO_ID_TIPO_ESTADO: 0,
+    DESCUENTOS_ID_DESCUENTOS: 0
+  }
+
+  detalle: DetalleFactura ={
+    FACTURA_ID_FACTURA: 0,
+    ID_DETALLE_FACTURA: 0,
+    SERVICIOS_VEHICULO_ID_SERVICIOS_VEHICULO: 0
+  }
+  descuento: any=[];
+  datosFactura: any=[];
   displayedColumns: string[] = ['servicios', 'precio', 'select'];
   dataSource = null;
   selection = null;
+  facturaObtenida: any=[]
   precios = 0;
   encendidos = 0;
+  IDdescuento = 0;
+  numeroDescuento = "No Aplica";
+  precioNeto = 0;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private servicioVehiculoRegistrarEntradaService: servicioVehiculoRegistrarEntradaService) {
+  constructor(private router: Router,private DetalleFacturaService: DetalleFacturaService,private FacturaService: FacturaService,private DescuentoService: DescuentoService,private servicioVehiculoRegistrarEntradaService: servicioVehiculoRegistrarEntradaService) {
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA)
     this.selection = new SelectionModel<elemento>(true, []);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.servicioVehiculoRegistrarEntradaService.getOneClienteVehiculo(1)
+    var datosFactura = JSON.parse(localStorage.getItem('datosFactura'))
+    this.datosFactura = datosFactura;
+    this.factura.CLIENTE_ID_CLIENTE = this.datosFactura.clienteID;
+    this.factura.VEHICULO_ID_VEHICULO = this.datosFactura.VehiculoID;
+    this.factura.TIPO_ESTADO_ID_TIPO_ESTADO = 2;
+    this.factura.ACTIVO = 'S';
+    this.servicioVehiculoRegistrarEntradaService.getOneClienteVehiculo(datosFactura.tipoVehiculo)
     .subscribe(
       res => { 
         this.resultado = res;
@@ -55,6 +86,13 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
         this.dataSource.sort = this.sort;
       }
     )
+    this.DescuentoService.getAll()
+      .subscribe(
+        res=>{
+          this.descuento =res;
+          console.log(res)
+        }
+      )
   }
  
 
@@ -87,6 +125,7 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
       
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+      this.calcularPrecio(this.precios, this.encendidos)
     }
   
    
@@ -97,12 +136,26 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
       return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.servicios+ 1}`;
     }
 
-    comprobar(){
-      this.dataSource.data.forEach(row=>{
-        console.log(row.precio)
-        console.log(this.selection.isSelected(row))
-        console.log(row.id)
-      })
+    registrarFactura(){
+      this.factura.TOTAL = this.precios.toString();
+      this.factura.TOTAL_NETO = this.calcularPrecio(this.precios, this.encendidos).toString();
+      this.factura.DESCUENTOS_ID_DESCUENTOS = this.IDdescuento;
+      var Dates = new Date();
+      this.factura.TURNO = this.generarTurno(Dates)
+      this.FacturaService.createFactura(this.factura)
+        .subscribe(
+          res=>{
+            console.log(res)
+            this.FacturaService.getOneFactura(Number.parseInt(this.factura.TURNO))
+              .subscribe(
+                res=>{
+                  this.facturaObtenida = res;
+                  this.asignarServicios()
+                }
+              )
+          }
+        )
+      console.log(this.factura)
     }
 
     leer(row?: elemento){
@@ -113,5 +166,50 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
         this.precios = this.precios+row.precio;
         this.encendidos = this.encendidos+1
       }
+      this.calcularPrecio(this.precios, this.encendidos)
+    }
+
+    calcularPrecio(precio: number, numero: number){
+      var porcentajeDescuento = 0;
+      this.descuento.forEach(descuento=>{
+        if(numero >= descuento.CANTIDAD_SERVICIOS){
+          this.IDdescuento = descuento.ID_DESCUENTOS;
+          porcentajeDescuento = descuento.PORCENTAJE_DESCUENTO;
+        }
+      })
+      if(porcentajeDescuento!=0){
+        this.numeroDescuento = porcentajeDescuento.toString()+"%"
+      }else{
+        this.numeroDescuento = "No Aplica"
+      }
+      var descuento = porcentajeDescuento/100;
+      descuento = descuento*precio;
+      descuento = precio-descuento
+      this.precioNeto = descuento;
+      return descuento;
+    }
+
+    generarTurno(Dates: Date){
+      var fecha = Dates.getFullYear()+""+Dates.getMonth()+""+Dates.getHours()+""+Dates.getMinutes()+""+Dates.getSeconds()
+      return fecha
+    }
+
+    asignarServicios(){
+      this.detalle.FACTURA_ID_FACTURA = this.facturaObtenida.ID_FACTURA
+      this.dataSource.data.forEach(row=>{
+        if(this.selection.isSelected(row)){
+          console.log(this.selection.isSelected(row))
+          console.log(row.id)
+          this.detalle.SERVICIOS_VEHICULO_ID_SERVICIOS_VEHICULO = row.id;
+          this.DetalleFacturaService.createDetalleFactura(this.detalle)
+            .subscribe(
+              res=>{
+                console.log(res)
+              } 
+            )
+        }
+      })
+      alert("Su turno es: "+this.factura.TURNO)
+      this.router.navigateByUrl('/vehiculosIngresados')
     }
 }

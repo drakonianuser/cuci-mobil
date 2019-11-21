@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UsuariosService } from './usuarios.service';
+import { DetalleFacturaService } from './detalle-factura.service';
 import {HttpClientModule} from '@angular/common/http'
 
-describe('UsuariosService', () => {
+describe('DetalleFacturaService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [HttpClientModule]
 
   }));
 
   it('should be created', () => {
-    const service: UsuariosService = TestBed.get(UsuariosService);
+    const service: DetalleFacturaService = TestBed.get(DetalleFacturaService);
     expect(service).toBeTruthy();
   });
 });

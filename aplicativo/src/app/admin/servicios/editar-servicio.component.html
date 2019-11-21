@@ -1,5 +1,4 @@
 <app-nav></app-nav>
-
 <div class="container col-3 pt-5">
     <div class="row justify-content-center">
         <h1 class="titulos">Editar servicios</h1>
@@ -30,18 +29,6 @@
                 <tr mat-row *matRowDef="let row; columns: columns;"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
-    <!-- <div class="row  justify-content-center pt-5">
-        <div class="vehiculo col-6">
-            <p class="vehiculo">Descuentos</p>
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <textarea class="col-3 cuadro" rows="2" placeholder="Numero de servicios necesarios"></textarea>
-        <textarea class="col-3 cuadro" rows="2" placeholder="porcentaje de descuento"></textarea>
-    </div> -->
-
     <div class="row justify-content-center">
             <h1 class="titulos pt-3">Servicios</h1>
         </div>
@@ -82,69 +69,6 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    <!-- <div class="row justify-content-end pt-4 pb-5">
-        <div class="col-3">
-            <button class="botones">
-                Guardar
-            </button>
-        </div>
-    </div>
-
-    <div class="row  justify-content-center pt-5">
-        <div class="vehiculo col-9">
-            <p class="vehiculo">Servicio</p>
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>vehiculo</p>
-        </div>
-            <textarea class="cuadro col-3" rows="2" placeholder="Precio"></textarea>
-        <div class="col-3 cuadro">
-            <input type="checkbox">
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>vehiculo</p>
-        </div>
-            <textarea class="cuadro col-3" rows="2" placeholder="Precio"></textarea>
-        <div class="col-3 cuadro">
-            <input type="checkbox">
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>vehiculo</p>
-        </div>
-            <textarea class="cuadro col-3" rows="2" placeholder="Precio"></textarea>
-        <div class="col-3 cuadro">
-            <input type="checkbox">
-        </div>
-    </div>
-
-    <div class="row justify-content-center ">
-        <div class="col-3 cuadro">
-            <p>vehiculo</p>
-        </div>
-            <textarea class="cuadro col-3" rows="2" placeholder="Precio"></textarea>
-        <div class="col-3 cuadro">
-            <input type="checkbox">
-        </div>
-    </div>
-
-
-    <div class="row justify-content-end pt-4 pb-3">
-        <div class="col-3">
-            <button class="botones">
-                Guardar
-            </button>
-        </div>
-    </div>-->
-
     <div class="row justify-content-center pt-5">
         <button class="botones">Añadir</button>
     </div> 

@@ -15,14 +15,15 @@ export class LoginComponent implements OnInit {
     USUARIO: '',
     PASSWORD: ''
   }
-
+  borrar: number;
   usuarioObtenido: any = [];
   ngOnInit() {
-    localStorage.removeItem('usuario')
-    console.log(JSON.parse(localStorage.getItem('usuario')))
-
+    console.log(this.borrar)
+    if(this.borrar==2){
+    }else{
+      localStorage.removeItem('usuario')
+    }
   }
-
   login(){
     this.userService.getOneUser(this.usuario.USUARIO)
       .subscribe(
@@ -33,10 +34,15 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/registroVehiculo')
             localStorage.setItem('usuario', JSON.stringify(this.usuarioObtenido))
             var usuarioS = JSON.parse(localStorage.getItem('usuario'))
-            console.log(usuarioS.USUARIO)
-          }else{
-            console.log("Credenciales invalidas")
+            return "Se logea"
+          }else{ 
+            alert("Credenciales invalidas")
+            return "No se logea"
           }
+        },
+        err=>{
+          alert("Credenciales invalidas")
+          return "No se logea"
         }
       )
   }
