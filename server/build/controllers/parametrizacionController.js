@@ -13,16 +13,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class tipoVehiculoController {
-    getAll(req, res) {
+class ClienteController {
+    getOneDescuento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipo_vehiculo = yield database_1.default.query('SELECT * FROM tipo_vehiculo');
-            console.log('SELECT * FROM tipo_vehiculo');
-            if (tipo_vehiculo.length > 0) {
-                return res.json(tipo_vehiculo);
+            const { ID } = req.params;
+            const descuento = yield database_1.default.query('SELECT * FROM DESCUENTOS WHERE ID_DESCUENTOS = ?', [ID]);
+            if (descuento.length > 0) {
+                return res.json(descuento);
             }
-            res.status(404).json({ text: 'no hay tipos de vehiculos registrados' });
+            res.status(404).json({ text: 'no hay clientes' });
+        });
+    }
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('INSERT INTO cliente set ?', [req.body]);
+            return res.json({ message: 'Usuario guardado' });
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('UPDATE cliente set ? WHERE ID_CLIENTE = ?', [req.body, id]);
+            res.json({ message: 'el usuario fue actualizado' });
         });
     }
 }
-exports.tipovehiculocontroller = new tipoVehiculoController();
+exports.clienteController = new ClienteController();
