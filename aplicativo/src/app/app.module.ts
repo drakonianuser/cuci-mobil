@@ -54,7 +54,8 @@ const routes: Route[] = [
     EditarVehiculoComponent,
     EditarServicioComponent,
     VehiculosIngresadosComponent,
-    Reportes
+    Reportes,
+    NavComponent
   ],
   imports: [
     MaterialModule,
@@ -63,8 +64,7 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
-    NavComponent
+    FormsModule
   ],
   providers: [
     UsuariosService,
