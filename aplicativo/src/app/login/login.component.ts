@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           this.usuarioObtenido = res;
-          console.log(this.usuarioObtenido)
           if(this.usuarioObtenido.PASSWORD == this.usuario.PASSWORD){
             this.router.navigateByUrl('/registroVehiculo')
             localStorage.setItem('usuario', JSON.stringify(this.usuarioObtenido))
