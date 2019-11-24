@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   borrar: number;
   usuarioObtenido: any = [];
   ngOnInit() {
-    console.log(this.borrar)
     if(this.borrar==2){
     }else{
       localStorage.removeItem('usuario')
@@ -33,15 +32,12 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/registroVehiculo')
             localStorage.setItem('usuario', JSON.stringify(this.usuarioObtenido))
             var usuarioS = JSON.parse(localStorage.getItem('usuario'))
-            return "Se logea"
           }else{ 
             alert("Credenciales invalidas")
-            return "No se logea"
           }
         },
         err=>{
           alert("Credenciales invalidas")
-          return "No se logea"
         }
       )
   }

@@ -15,6 +15,11 @@ export interface elemento {
   servicios: string;
   id: number;
 }
+export interface descuentos{
+  id: number,
+  descuento: number,
+  cantidadServicios: number
+}
 
 @Component({
   selector: 'app-registrar-entrada-serviteca',
@@ -45,7 +50,8 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
     ID_DETALLE_FACTURA: 0,
     SERVICIOS_VEHICULO_ID_SERVICIOS_VEHICULO: 0
   }
-  descuento: any=[];
+  descuento: descuentos[]=[];
+  resultado2;
   datosFactura: any=[];
   displayedColumns: string[] = ['servicios', 'precio', 'select'];
   dataSource = null;
@@ -88,9 +94,16 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
     )
     this.DescuentoService.getAll()
       .subscribe(
-        res=>{
-          this.descuento =res;
-          console.log(res)
+        res=>{        
+          this.resultado2 = res;
+          for (let index = 0; index < this.resultado2.length; index++) {
+            this.descuento.push({
+              id: this.resultado2[index].ID_DESCUENTOS,
+              descuento: this.resultado2[index].PORCENTAJE_DESCUENTO,
+              cantidadServicios: this.resultado2[index].CANTIDAD_SERVICIOS
+            })
+          } 
+          console.log(this.descuento)
         }
       )
   }
@@ -145,7 +158,6 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
       this.FacturaService.createFactura(this.factura)
         .subscribe(
           res=>{
-            console.log(res)
             this.FacturaService.getOneFactura(Number.parseInt(this.factura.TURNO))
               .subscribe(
                 res=>{
@@ -155,7 +167,6 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
               )
           }
         )
-      console.log(this.factura)
     }
 
     leer(row?: elemento){
@@ -171,10 +182,12 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
 
     calcularPrecio(precio: number, numero: number){
       var porcentajeDescuento = 0;
+      console.log(precio)
+      console.log(this.descuento)
       this.descuento.forEach(descuento=>{
-        if(numero >= descuento.CANTIDAD_SERVICIOS){
-          this.IDdescuento = descuento.ID_DESCUENTOS;
-          porcentajeDescuento = descuento.PORCENTAJE_DESCUENTO;
+        if(numero >= descuento.cantidadServicios){
+          this.IDdescuento = descuento.id;
+          porcentajeDescuento = descuento.descuento;
         }
       })
       if(porcentajeDescuento!=0){
@@ -198,13 +211,10 @@ export class RegistrarEntradaServitecaComponent implements OnInit{
       this.detalle.FACTURA_ID_FACTURA = this.facturaObtenida.ID_FACTURA
       this.dataSource.data.forEach(row=>{
         if(this.selection.isSelected(row)){
-          console.log(this.selection.isSelected(row))
-          console.log(row.id)
           this.detalle.SERVICIOS_VEHICULO_ID_SERVICIOS_VEHICULO = row.id;
           this.DetalleFacturaService.createDetalleFactura(this.detalle)
             .subscribe(
               res=>{
-                console.log(res)
               } 
             )
         }

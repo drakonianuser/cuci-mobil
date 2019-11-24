@@ -31,8 +31,4 @@ describe('LoginComponent', () => {
   it('Se crea el componente', () => {
     expect(component).toBeTruthy();
   });
-  it('se logea en el sistema',()=>{
-    let var1 = component.login();
-    let var2 = 'Se logea'; 
-  });
 });  

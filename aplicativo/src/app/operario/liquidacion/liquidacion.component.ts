@@ -36,7 +36,6 @@ DataElement: Factura[] = [
       .subscribe(
         res=>{
           this.factura = res;
-          console.log(this.factura)
           if(this.factura.ID_DESCUENTOS==0){
             this.descuento=" No Aplica"
           }else{
@@ -92,7 +91,6 @@ DataElement: Factura[] = [
       this.facturaService.updateFactura(this.factura.ID_FACTURA, this.facturaUpdate)
         .subscribe(
           res=>{
-            console.log(res)
             this.router.navigateByUrl('/vehiculosIngresados')
           }
         )
