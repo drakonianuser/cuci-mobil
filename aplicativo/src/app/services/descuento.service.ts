@@ -11,5 +11,5 @@ export class DescuentoService {
   constructor(private http: HttpClient) { }
   getAll(){
     return this.http.get(`${this.API_URI}/descuento`);
-  }
+  }  
 }

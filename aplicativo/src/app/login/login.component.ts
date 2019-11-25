@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   borrar: number;
   usuarioObtenido: any = [];
   ngOnInit() {
-    console.log(this.borrar)
     if(this.borrar==2){
     }else{
       localStorage.removeItem('usuario')
@@ -53,21 +52,21 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           this.usuarioObtenido = res;
-          console.log(this.usuarioObtenido)
           if(this.usuarioObtenido.PASSWORD == this.usuario.PASSWORD){
             this.router.navigateByUrl('/registroVehiculo')
             localStorage.setItem('usuario', JSON.stringify(this.usuarioObtenido))
             var usuarioS = JSON.parse(localStorage.getItem('usuario'))
+<<<<<<< HEAD
             this.validacion
             return "Se logea"
+=======
+>>>>>>> 332c7ae182a5abdede830b1cc4796aad445bf9ed
           }else{ 
             alert("Credenciales invalidas")
-            return "No se logea"
           }
         },
         err=>{
           alert("Credenciales invalidas")
-          return "No se logea"
         }
       )
   }

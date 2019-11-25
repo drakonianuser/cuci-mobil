@@ -13,6 +13,7 @@ describe('LiquidacionComponent', () => {
     USUARIO: "admin",
     PASSWORD: "admin"
   }
+  localStorage.setItem('Turno', "20191020551")
   localStorage.setItem('usuario', JSON.stringify(usuario))
   beforeEach(async(() => {
     TestBed.configureTestingModule({

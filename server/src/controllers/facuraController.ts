@@ -21,10 +21,10 @@ class FacturaController {
     public async getDisponible (req: Request, res: Response): Promise<any>{
         const {PLACA} = req.params;
         console.log("entro")
-        const factura = await pool.query('SELECT * FROM factura f INNER JOIN vehiculo v ON (f.VEHICULO_ID_VEHICULO = v.ID_VEHICULO) WHERE v.PLACA = ? AND f.TIPO_ESTADO_ID_TIPO_ESTADO = "2" OR F.TIPO_ESTADO_ID_TIPO_ESTADO = "3"',[PLACA])
+        const factura = await pool.query('SELECT * FROM factura f INNER JOIN vehiculo v ON (f.VEHICULO_ID_VEHICULO = v.ID_VEHICULO) WHERE v.PLACA = "?" AND (f.TIPO_ESTADO_ID_TIPO_ESTADO = "2" OR f.TIPO_ESTADO_ID_TIPO_ESTADO = "3")',[PLACA])
         if(factura.length>0){
             return res.json(factura[0])
-        }
+        } 
         res.status(404).json({text: 'no hay facturas'})
     }
 

@@ -19,6 +19,7 @@ export class RegistroVehiculoComponent implements OnInit {
   selected = 1;
   stateCtrl:boolean = false;
   dueno:boolean = false;
+  registrado:boolean = false;
   tipoVehiculos: any = [];
   vehiculObtenido = false;
   clienteobtenido = false;
@@ -62,10 +63,7 @@ export class RegistroVehiculoComponent implements OnInit {
       .subscribe(
         res => {
           this.tipoVehiculos = res;
-          console.log(this.tipoVehiculos)
-          for(let vehiculo of this.tipoVehiculos){
-            console.log(vehiculo.NOMBRE)
-          }
+
         }
       )
    }
@@ -80,15 +78,13 @@ export class RegistroVehiculoComponent implements OnInit {
     localStorage.setItem('datosFactura', JSON.stringify(this.datosFactura))
   }
   registrarVehiculo(){
-    if(this.vehiculo.ID_VEHICULO==0){
-      console.log("creo vehiculo")
+    if(this.vehiculo.ID_VEHICULO==0 && this.registrado==false){
       this.VehiculoService.createVehiculo(this.vehiculo)
       .subscribe(
         res =>{
           this.VehiculoService.getOneVehiculo(this.vehiculo.PLACA)
           .subscribe(
             res =>{
-              console.log("Consulto el vehiculo")
               this.vehiculoObtenido = res;
               this.vehiculo = this.vehiculoObtenido;
               this.vehiculObtenido = true;
@@ -107,11 +103,11 @@ export class RegistroVehiculoComponent implements OnInit {
           )
         }
       )
-    }else if(this.cliente.ID_CLIENTE==0 && this.stateCtrl==true){
+    }else if(this.cliente.ID_CLIENTE==0 && this.stateCtrl==true && this.registrado==false){
       this.crearCliente();
-    }else if(this.dueno==true){
+    }else if(this.dueno==true && this.registrado==false){
       this.crearClienteXVehiculo();
-    }else{
+    }else if(this.registrado==false){
       this.almacenarDatosFactura()
       this.router.navigateByUrl('/registrarEntrada')
     }
@@ -124,8 +120,10 @@ export class RegistroVehiculoComponent implements OnInit {
       .subscribe(
         res=>{
           alert("El vehiculo se encuentra en la serviteca")
+          this.registrado = true;
         },
         err=>{
+          this.registrado = false;
           this.VehiculoService.getOneVehiculo(this.vehiculo.PLACA)
           .subscribe(
             res =>{
@@ -144,7 +142,6 @@ export class RegistroVehiculoComponent implements OnInit {
   }
 
   buscarCliente(){
-    console.log(""+this.stateCtrl)
     if(this.stateCtrl==true){
       this.clienteobtenido = false;
       this.cliente.ID_CLIENTE=0;
@@ -163,8 +160,6 @@ export class RegistroVehiculoComponent implements OnInit {
   }
 
   crearCliente(){
-    console.log(this.cliente.CEDULA)
-    console.log("creo cliente")
     this.clienteService.createCliente(this.cliente)
     .subscribe(
       res =>{
@@ -187,7 +182,6 @@ export class RegistroVehiculoComponent implements OnInit {
   }
 
   crearClienteXVehiculo(){
-    console.log("entro a crear cliente vehiculo")
     this.clienteXVehiculo.VEHICULO_ID_VEHICULO = this.vehiculo.ID_VEHICULO;
     this.clienteXVehiculo.CLIENTE_ID_CLIENTE = this.cliente.ID_CLIENTE;
     this.clienteXVehiculo.VEHICULO_TIPO_VEHICULO_ID_TIPO_VEHICULO = this.vehiculo.TIPO_VEHICULO_ID_TIPO_VEHICULO;
@@ -210,7 +204,6 @@ export class RegistroVehiculoComponent implements OnInit {
           this.router.navigateByUrl('/registrarEntrada')
         },
         err=>{
-          console.log("entro")
           this.clienteVehiculoService.createClienteVehiculo(this.clienteXVehiculo)
             .subscribe(
               res=>{

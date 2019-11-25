@@ -13,7 +13,7 @@ export class FacturaService {
   getOneFactura(ID: number){
     return this.http.get(`${this.API_URI}/factura/${ID}`); 
   }
-  getAllFactura(){
+  getAllFactura(){ 
     return this.http.get(`${this.API_URI}/factura`);
 
   }
