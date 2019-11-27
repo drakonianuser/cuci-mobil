@@ -17,6 +17,7 @@ import { VehiculosIngresadosComponent } from './admin/vehiculosIngresados/vehicu
 import { Reportes } from './reportes/reportes.component';
 import {RouterModule, Route} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms'
 
 import {DetalleFacturaService} from './services/detalle-factura.service'
 import {FacturaService} from './services/factura.service'
@@ -64,7 +65,8 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsuariosService,
