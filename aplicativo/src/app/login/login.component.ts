@@ -56,10 +56,8 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/registroVehiculo')
             localStorage.setItem('usuario', JSON.stringify(this.usuarioObtenido))
             var usuarioS = JSON.parse(localStorage.getItem('usuario'))
-
             this.validacion
             return "Se logea"
-
           }else{ 
             alert("Credenciales invalidas")
           }
