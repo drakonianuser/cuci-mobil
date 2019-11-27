@@ -1,13 +1,13 @@
 #language: es
 @serviciosQueAplicanDescuentos
-Característica: servicios que aplican descuento
-  yo como operario aplico los servicios
+Característica: Asignar Servicios
+	Yo como usuario registro un vehiculo y le asigno servicios
 
   Antecedentes: 
     Dado un usuario: admin y una contraseña: admin, ingreso al sistema
 
   @serviciosQueAplicanDescuentos
-  Esquema del escenario: servicios que aplican descuento
+  Esquema del escenario: Registrar un numero de servicios que apliquen descuento
     Dado la placa: <placa>, el documento: <documento> y el tipo de vehiculo: <tipoVehiculo>, registro un vehiculo y un cliente
     Cuando yo escojo los servicios para el tipo de vehiculo: <tipoVehiculo>
     Entonces verifico que haya descuento y le doy en el boton guardar
@@ -15,5 +15,5 @@ Característica: servicios que aplican descuento
 
     Ejemplos: 
       | placa  | documento | tipoVehiculo |
-      | CCC020 | 03904341 | Automovil    |
-      | CCC021 | 03904342 | moto         |
+      | CCC030 | 03904341 | Automovil    |
+      | CCC040 | 03904342 | moto         |

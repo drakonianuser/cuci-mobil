@@ -59,7 +59,7 @@ class registrarEntrada {
 		WebUI.click(findTestObject('Object Repository/registrarEntrada/button_asignarServicio'))
 	}
 
-	@And("verifico que si haya registrado el ehiculo con placa: (.*)")
+	@And("verifico que si haya registrado el vehiculo con placa: (.*)")
 	def verificar(String placa){
 		WebUI.delay(3)
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/registrarEntrada/h2_placa',['placa' : placa]),0)

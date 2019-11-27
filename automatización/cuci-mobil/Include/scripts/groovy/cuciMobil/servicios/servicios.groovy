@@ -78,20 +78,18 @@ class servicios {
 
 		WebUI.click(findTestObject('Object Repository/servicios/button_guardar'))
 	}
-	
+
 	@And("yo como operario selecciono el servicio")
 	def servicio_sin_descuento(){
-		
+
 		WebDriver driver = DriverFactory.getWebDriver()
 		List<WebElement> seleccionarServicio = driver.findElements(By.xpath('//td[@id="checkbox"]/mat-checkbox/label/div'));
 		seleccionarServicio.get(0).click()
 		WebUI.click(findTestObject('Object Repository/servicios/button_guardar'))
 	}
-	
+
 	@And("yo como operario verifico que se haya guardado correctamente")
 	def verificar_entrada(){
-		
-		assert WebUI.verifyAlertPresent(5)
-		
+		assert WebUI.verifyAlertPresent(10)
 	}
 }

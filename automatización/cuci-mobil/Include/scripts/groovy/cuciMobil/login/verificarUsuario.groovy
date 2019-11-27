@@ -51,17 +51,15 @@ class verificarUsuario {
 	/**
 	 * The step definitions below match with Katalon sample Gherkin steps
 	 */
-	@Given("yo verifico que haya ingresado como operario")
+	@Given("el menu de opciones yo verifico que salgan las opciones que me corresponde como operario")
 	def verificar_operario() {
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/barraNavegacion/a_cerrarSeccion'),0)
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/barraNavegacion/a_registrarentrada'),0)
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/barraNavegacion/a_turnos'),0)
-		assert WebUI.verifyElementNotPresent(findTestObject('Object Repository/barraNavegacion/a_generarReporte'),0)
-		assert WebUI.verifyElementNotPresent(findTestObject('Object Repository/barraNavegacion/a_parametrizacion'),0)
 	}
 
-	@When("yo verifico que haya ingresado como administrador")
-	def I_check_for_the_value_in_step(int value) {
+	@Given("el menu de opciones yo verifico que salgan las opciones que me corresponde como administrador")
+	def I_check_for_the_value_in_step() {
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/barraNavegacion/a_cerrarSeccion'),0)
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/barraNavegacion/a_registrarentrada'),0)
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/barraNavegacion/a_turnos'),0)

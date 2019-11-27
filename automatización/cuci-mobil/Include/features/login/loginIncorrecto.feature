@@ -1,9 +1,9 @@
 #language: es
 @login
-Característica: ingreso al sistema
-  yo como operario ingreso al sistema
+Característica: Login del sistema
+  Yo como usuario deseo ingresar al sistema
 
   @loginAlterno
-  Escenario: ingreso al sistema incorrecto
-    Dado un usuario: pepito y una contraseña: admin, ingreso al sistema
+  Escenario: Login con contraseña invalida
+    Dado un usuario: admin y una contraseña: pepito, ingreso al sistema
     Pero verifico que salga el mensage de error

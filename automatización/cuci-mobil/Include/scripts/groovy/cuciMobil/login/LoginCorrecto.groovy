@@ -66,11 +66,11 @@ class LoginCorrecto {
 	def validacion_correcta(){
 		WebUI.delay(2)
 		assert WebUI.verifyElementPresent(findTestObject('Object Repository/login/h1_titulo'), 0)
+		WebUI.closeBrowser()
 	}
 	@Then('verifico que salga el mensage de error')
 	def validacion_incorrecta(){
-		
 		assert WebUI.verifyElementNotPresent(findTestObject('Object Repository/login/h1_titulo'), 0)
-		
+		WebUI.closeBrowser()
 	}
 }

@@ -11,9 +11,9 @@
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
    <testSuiteGuid>1fbaa992-ea9b-4b43-b6f6-374c313bc82d</testSuiteGuid>
    <testCaseLink>
-      <guid>a40a82f6-2d33-4b88-8be1-33964e9def03</guid>
+      <guid>cdc72c77-604f-4023-bd85-bbdb7631d625</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/login/login</testCaseId>
+      <testCaseId>Test Cases/login/LoginValidoEInvalido</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>
