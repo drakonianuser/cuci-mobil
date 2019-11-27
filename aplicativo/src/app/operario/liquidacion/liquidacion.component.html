@@ -67,10 +67,10 @@
         </div>
       </mat-grid-tile>
       <mat-grid-tile rowspan="1" colspan="4" *ngIf="factura.TIPO_ESTADO_ID_TIPO_ESTADO==3">
-        <button mat-raised-button color="primary" (click)="actualizarFactura(4)">Liquidar</button>
+        <button id="terminar" mat-raised-button color="primary" (click)="actualizarFactura(4)">Liquidar</button>
       </mat-grid-tile>
       <mat-grid-tile rowspan="1" colspan="4" *ngIf="factura.TIPO_ESTADO_ID_TIPO_ESTADO==2">
-        <button mat-raised-button color="primary" (click)="actualizarFactura(3)">Terminar</button>
+        <button id="terminar" mat-raised-button color="primary" (click)="actualizarFactura(3)">Terminar</button>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>
