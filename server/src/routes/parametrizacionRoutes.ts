@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { clienteController } from "../controllers/clienteController";
-class ClienteRoutes {
+import { parametrizacionController } from "../controllers/parametrizacionController";
+class ParametrizacionRoutes {
 
     public router: Router = Router();
     constructor() {
@@ -9,11 +9,17 @@ class ClienteRoutes {
     }
 
     config(): void {
-        this.router.get('/:ID', clienteController.getOne);
-        this.router.post('/', clienteController.create);
-        this.router.put('/:ID', clienteController.update);
+        //this.router.get('/pdescuento/:ID', parametrizacionController.getOneDescuento);
+        this.router.post('/parametrizacion/crearDescuento', parametrizacionController.createDescuento);
+        this.router.put('/parametrizacion/actualizarDescuento/:id', parametrizacionController.updateDescuento);
+        this.router.post('/parametrizacion/eliminarDescuento/:id', parametrizacionController.deleteDescuento)
+        this.router.post('/parametrizacion/crearServicio',parametrizacionController.createServicio);
+        this.router.put('/parametrizacion/actualizarServicio',parametrizacionController.updateServicio);
+        this.router.post('/parametrizacion/eliminarServicio',parametrizacionController.delecteServicio);
+        
+
     }
 }
 
-const clienteRoutes = new ClienteRoutes();
-export default clienteRoutes.router;
+const parametrizacionRoutes = new ParametrizacionRoutes();
+export default parametrizacionRoutes.router;
