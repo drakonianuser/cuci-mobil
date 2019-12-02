@@ -87,7 +87,23 @@ class ParametrizacionController {
     }
 
     public async updateServicioVehiculo(req: Request, res: Response){
+        const { IDSERVICIOSVEHICULO } = req.params;
+        if(this.exiteServicioVehiculo(IDSERVICIOSVEHICULO)){
+            await pool.query('UPDATE SERVICIOS_VEHICULO SET ? WHERE ID_SERVICIOS_VEHICULO = ? ', [req.body,IDSERVICIOSVEHICULO]);
+            res.json({message: 'El servicio vehiculo actualizado con exito'});
+        }else{
+            res.status(404).json({text: "No existe el servicioVehiculo"});
+        }
+    }
 
+    public async deleteServicioVehiculo(req: Request, res: Response){
+        const { IDSERVICIOSVEHICULO } = req.params;
+        if(this.exiteServicioVehiculo(IDSERVICIOSVEHICULO)){
+            await pool.query('UPDATE SERVICIOS_VEHICULO SET ACTIVO = N WHERE ID_SERVICIOS_VEHICULO = ? ', [req.body,IDSERVICIOSVEHICULO]);
+            res.json({message: 'El servicio vehiculo fue desabilitado con exito'});
+        }else{
+            res.status(404).json({text: "No existe el servicioVehiculo"});
+        }
     }
 
 
@@ -102,6 +118,13 @@ class ParametrizacionController {
 
     private async existeVehiculo(vehiculo:string){
         const id = await pool.query('SELECT ID_VEHICULO FROM TIPO_VEHICULO WHEREN ID_VEHICULO = ? AND ACTIVO = S', [vehiculo]);
+        if(id.length > 0){
+            return true
+        }
+        return false
+    }
+    private async exiteServicioVehiculo(serviciovehiculo: string){
+        const id = await pool.query('SELECT ID_SERVICIOS_VEHICULO FROM SERVICIOS_VEHICULO WHEREN ID_SERVICIOS_VEHICULO = ? AND ACTIVO = S', [serviciovehiculo]);
         if(id.length > 0){
             return true
         }

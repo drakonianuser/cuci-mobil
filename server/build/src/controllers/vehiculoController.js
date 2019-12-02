@@ -24,7 +24,6 @@ class vehiculoController {
         return __awaiter(this, void 0, void 0, function* () {
             const { PLACA } = req.params;
             const vehiculo = yield database_1.default.query('SELECT * FROM vehiculo WHERE PLACA = ?', [PLACA]);
-            console.log('SELECT * FROM usuarios WHERE PLACA = ?', [PLACA]);
             if (vehiculo.length > 0) {
                 return res.json(vehiculo[0]);
             }

@@ -6,13 +6,14 @@
 
 module.exports = {
     diff: true,
-    extension: ['ts'],
+    extension: ['js'],
     opts: false,
     package: './package.json',
     reporter: 'spec',
     slow: 75,
     timeout: 2000,
     ui: 'bdd',
-    'watch-files': ['src/**/*.ts', 'test/**/*.spec.ts'],
+
+    'watch-files': ['build/**/*.js', 'build/test/**/*.spec.js'],
     //'watch-ignore': ['lib/vendor']
 };
