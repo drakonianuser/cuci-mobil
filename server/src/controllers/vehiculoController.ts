@@ -12,7 +12,6 @@ class vehiculoController {
     public async getOne (req: Request, res: Response): Promise<any>{
         const {PLACA} = req.params;
         const vehiculo = await pool.query('SELECT * FROM vehiculo WHERE PLACA = ?',[PLACA])
-        console.log('SELECT * FROM usuarios WHERE PLACA = ?',[PLACA])
         if(vehiculo.length>0){
             return res.json(vehiculo[0]);
         }
