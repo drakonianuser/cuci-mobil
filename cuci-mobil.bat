@@ -7,9 +7,5 @@ npm install -g @angular/cli@7.3.0
 npm install -g typescript
 
 
-
-cd server 
-npm run dev 
-cd ..
-cd aplicativo
-ng serve
+start /b start-server.bat
+start /b start-api-1.bat
