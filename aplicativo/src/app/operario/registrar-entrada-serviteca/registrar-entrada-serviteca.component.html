@@ -1,0 +1,77 @@
+<app-nav></app-nav>
+<div class="container col-3 pt-5">
+    <div class="row justify-content-center">
+        <h1 class="titulos">Servicios</h1>
+    </div>
+</div>
+<div class="container contenedor col-7 p-5">
+    <div>
+        <div class="row justify-content-center">
+            <h2>{{datosFactura.Placa}}</h2>
+        </div>
+    </div>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="col-12">
+
+        <ng-container matColumnDef="servicios">
+            <th mat-header-cell *matHeaderCellDef> servicios </th>
+            <td mat-cell *matCellDef="let element"> {{element.servicios}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+          <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()" color="primary"
+                            >
+            </mat-checkbox>
+            </th>
+            <td id="checkbox" mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)" color="primary"
+                            (click)="leer(row)">
+            </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    <table cellpadding="10">
+        <tr>
+            <td>
+                <h2>Total:</h2>
+            </td> 
+            <td>
+                <h2 style="text-decoration: underline; float: rigth;"  name='precio'>{{precioNeto}}</h2>
+            </td> 
+            <td>
+                <h2>Descuento: </h2>
+            </td>
+            <td>
+                <h2 id="descuento">{{numeroDescuento}}</h2>
+            </td>
+            <td>
+                <button id="botonGuardar" (click)="registrarFactura()">Guardar</button>
+            </td>
+        </tr>
+    </table>
+</div>

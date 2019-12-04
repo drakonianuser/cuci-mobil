@@ -1,0 +1,77 @@
+<app-nav></app-nav>
+<div class="container col-3 pt-5">
+  <div class="row justify-content-center">
+    <h1 class="titulos">Liquidacion</h1>
+  </div>
+</div>
+
+<!--   -->
+
+<ng-container class="container contenedor col-6 pb-3 pt-3">
+  <mat-card class=" container contenedor col-9 ">
+    <mat-grid-list cols="4" rowHeight="110px">
+      <mat-grid-tile rowspan="3" colspan="2">
+        <mat-list>
+          <mat-list-item>Turno : {{factura.TURNO}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Fecha De Entrada : {{fecha}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Tipo de vehiculo: {{factura.NOMBRE}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>placa: {{factura.PLACA}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <ng-container *ngIf="factura.ID_CLIENTE!=0">
+            <mat-list-item>Documento cliente: {{factura.CEDULA}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Nombre cliente: {{factura.NOMBREC}} {{factura.APELLIDOS}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Telefono: {{factura.TELEFONO}}</mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="2" colspan="2">
+        <div><img src="../../../assets/logo.png" /></div>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="4" colspan="4">
+        <div class="mat-elevation-z8 full" >
+          <table mat-table [dataSource]="dataSource" >
+            <ng-container matColumnDef="NR">
+              <th mat-header-cell *matHeaderCellDef>NRO</th>
+              <td mat-cell *matCellDef="let element">{{ element.NR }}</td>
+              <td mat-footer-cell *matFooterCellDef>
+                Cantida servicios: {{ getServices() }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="Nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let element">{{ element.Nombre }}</td>
+              <td mat-footer-cell *matFooterCellDef>Descuento:{{descuento}}</td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>precio</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.precio | currency }}
+              </td>
+              <td mat-footer-cell *matFooterCellDef>
+                Total: {{ totalCost }}$ Total Neto: {{factura.TOTAL_NETO}}$
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+          </table>
+          <mat-paginator [pageSize]="10" [length]="services"></mat-paginator>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="1" colspan="4" *ngIf="factura.TIPO_ESTADO_ID_TIPO_ESTADO==3">
+        <button id="terminar" mat-raised-button color="primary" (click)="actualizarFactura(4)">Liquidar</button>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="1" colspan="4" *ngIf="factura.TIPO_ESTADO_ID_TIPO_ESTADO==2">
+        <button id="terminar" mat-raised-button color="primary" (click)="actualizarFactura(3)">Terminar</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+</ng-container>

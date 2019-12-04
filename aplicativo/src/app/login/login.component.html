@@ -1,0 +1,32 @@
+
+<div class="container col-12" style="height:200px;">
+    <a href="##"></a>
+</div>
+
+<div class="container col-3">
+    
+</div>
+
+<form  class="container contenedor col-3 pt-5">
+
+    <div class="row justify-content-center">
+        <h1 class="titulos">Login</h1>
+    </div>
+
+    <div class="row justify-content-center">
+        <mat-form-field class="example-full-width">
+            <input id="user" matInput placeholder="Usuario" type="email" name="usuario"[(ngModel)]= "usuario.USUARIO">
+        </mat-form-field>
+    </div>
+
+    <div class="row justify-content-center p-4">    
+        <mat-form-field class="example-full-width">
+            <input id="pass" matInput placeholder="Contraseña" type="password" name="correo"[(ngModel)]= "usuario.PASSWORD">
+        </mat-form-field>
+    </div>
+    
+    <div class="row justify-content-center pb-5">   
+        <button id="validarLogin" formControlName="boton" mat-raised-button color="primary" (click)="login()">Ingresar</button>
+    </div>
+
+</form>

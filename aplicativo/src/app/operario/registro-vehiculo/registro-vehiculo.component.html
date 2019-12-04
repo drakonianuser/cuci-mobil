@@ -1,0 +1,63 @@
+<app-nav></app-nav>
+<div class="container col-3 pt-5">
+    <div class="row justify-content-center">
+        <h1 name="titulo" class="titulos">Vehiculo</h1>
+    </div>
+</div>
+<form class="example-form" class="container contenedor col-6 pb-3 pt-3">
+    <mat-form-field class="input-mid-width" >
+        <input id="numeroPlaca" matInput placeholder="Buscar vehiculo*" value="" [(ngModel)]='vehiculo.PLACA' name="PLACA">
+    </mat-form-field>
+    <button mat-button class="botones" (click)="buscarVehiculo()" > Buscar</button>
+    <table class="input-full-width"><tr>
+    <td>
+    <mat-form-field class="input-full-width" >
+    <mat-label>Tipo Vehiculo*</mat-label>
+    <mat-select id="tipoVehiculo" [(value)]="selected" [disabled]="vehiculObtenido" [(ngModel)]='vehiculo.TIPO_VEHICULO_ID_TIPO_VEHICULO' name="ID_ESTADO">
+        <mat-option *ngFor="let vehiculo of tipoVehiculos" [value]="vehiculo.ID_TIPO_VEHICULO">
+         {{vehiculo.NOMBRE}} 
+        </mat-option>
+    </mat-select>
+    </mat-form-field>
+    </td>
+    </tr></table>
+    <mat-label>Cliente</mat-label>
+    <table class="input-full-width"><tr><td>
+    <mat-form-field class="input-full-width" >
+        <input id="documento" matInput placeholder="Documento" [(ngModel)]='cliente.CEDULA' name='cedula'>
+    </mat-form-field>
+    </td><td>
+    <mat-slide-toggle
+    (click)="buscarCliente()"
+    [checked]="stateCtrl.false"
+    (change)="stateCtrl = false ? stateCtrl = true : stateCtrl = !stateCtrl">
+        Registrar Cliente?
+    </mat-slide-toggle>
+    </td>
+    </tr>
+    </table>
+    <ng-container *ngIf="stateCtrl">
+    <table class="input-full-width" ><tr><td>
+    <mat-form-field class="input-full-width" >
+        <input id="nombre" matInput placeholder="Nombre"[(ngModel)]='cliente.NOMBRE' name='NOMBRE'[disabled]="clienteobtenido">
+    </mat-form-field>
+    </td><td>
+    <mat-form-field class="input-full-width" >
+            <input id="apellidos" matInput placeholder="Apellidos"[disabled]="clienteobtenido"[(ngModel)]='cliente.APELLIDOS' name='APELLIDOS'>
+    </mat-form-field>
+    </td></tr>
+    <tr><td>
+    <mat-form-field class="example-full-width">
+        <input id="telefono" type="tel" [disabled]="clienteobtenido" matInput placeholder="Telefono" [(ngModel)]='cliente.TELEFONO' name='TELEFONO'>
+    </mat-form-field>
+    <mat-slide-toggle
+    [checked]="dueno.false"
+    (change)="dueno = false ? dueno = true : dueno = !dueno">
+        Es dueño del vehiculo?
+    </mat-slide-toggle>
+    </td></tr>
+    </table>
+    </ng-container>
+    
+    <button id="signarServicio" mat-button class="botones" (click)="registrarVehiculo()">Asignar servicios</button>
+</form> 

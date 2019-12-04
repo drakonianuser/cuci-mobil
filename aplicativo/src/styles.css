@@ -1,0 +1,94 @@
+.botones{
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    margin: 10px;
+    color: #f2f2f2;
+    border: px solid #007bff;
+    
+    background: #007bff;
+	transition:background 1s;
+}
+.botones:hover{
+	background: #f2f2f2;
+	color: black;
+}
+
+.inputs{    
+    font: 120% serif;
+    border-radius: 10px;
+}
+
+.titulos{
+    font:bold 200% serif;
+    color: #000;
+}
+
+.contenedor{
+    background: #ffffff;
+}
+
+.cuadro{
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    background: #f2f2f2;
+    border: 1px solid #000000;
+}
+
+.vehiculo{
+    font:bold 120% serif;
+    text-align: center;
+    color:white;
+    background: #007bff;
+}
+
+.boton-pausa{
+    font:bold 120% serif;
+    text-decoration: none;
+    color: #070000;
+    border: 1px solid #000000;
+    background: #ffffff;
+	transition:background 1s;
+}
+.boton-pausa:hover{
+    background: #007bff;
+    color: #ffffff;
+    
+}
+
+.boton-eliminar{
+    font:bold 120% serif;
+    text-decoration: none;
+    color: #070000;
+    border: 1px solid #000000;
+    background: #ffffff;
+	transition:background 1s;
+}
+.boton-eliminar:hover{
+    background: #af4f4f;
+    color: #ffffff;
+}
+
+body{
+    background-image: url("./assets/fon2.jpg");
+    background-size: cover;
+    background-repeat: repeat;  
+    background-size: 100%;
+    background-position: center;
+} 
+
+.iconos{
+    font:bold 120% serif;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    color: #f2f2f2;
+    border-radius: 100px;
+    border: 3px solid #007bff;
+    background: #007bff;
+	transition:background 1s;
+}
+.iconos:hover{
+    background: #f2f2f2;
+	color: black;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

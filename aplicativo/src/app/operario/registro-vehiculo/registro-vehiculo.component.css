@@ -1,0 +1,19 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  }
+
+.input-full-width {
+  margin: 10px;
+  width: 95%;
+}
+
+.input-mid-width{
+  margin: 10px;
+  width: 50%;
+}
+
+.button{
+  background: #007bff;
+}

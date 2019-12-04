@@ -1,0 +1,33 @@
+.cuadro-liquidacion {
+    height: 250px;
+    border-radius: 50px;
+    border: 1px solid #000000;
+    background-color: rgb(255, 255, 255);
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+.full{
+    width: 100%;
+}
+.cuadro-titulo {
+    font: bold 120% serif;
+    text-align: center;
+    border: 1px solid #000000;
+    background: #007bff;
+}
+
+.cuadro-informacion {
+    font: bold 100% serif;
+    border: 1px solid #000000;
+}
+
+table {
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

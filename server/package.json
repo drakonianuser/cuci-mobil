@@ -1,0 +1,37 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc -w",
+        "dev": "nodemon build/index.js",
+        "test": "ts-mocha"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "morgan": "^1.9.1",
+        "mysql": "github:mysqljs/mysql",
+        "mysql2": "^1.6.5",
+        "promise-mysql": "3.3.1",
+        "ts-node": "^8.5.2",
+        "typescript": "^3.7.2"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.6",
+        "@types/expect": "^24.3.0",
+        "@types/express": "^4.17.1",
+        "@types/mocha": "^5.2.7",
+        "@types/morgan": "^1.7.37",
+        "@types/supertest": "^2.0.8",
+        "chai": "^4.2.0",
+        "mocha": "^6.2.2",
+        "nodemon": "^1.19.3",
+        "supertest": "^4.0.2",
+        "ts-mocha": "^6.0.0"
+    }
+}
