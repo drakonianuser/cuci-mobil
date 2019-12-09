@@ -10,7 +10,8 @@ import clienteVehiculoRoutes from "./routes/clienteVehiculoRoutes";
 import servicioVehiculoRoutes from "./routes/servicioVehiculoRoutes";
 import facturaRoutes from "./routes/facturaRoutes";
 import detalleFacturaRoutes from "./routes/detalleFacturaRoutes";
-import descuentoRoutes from "./routes/descuentoRoutes"
+import descuentoRoutes from "./routes/descuentoRoutes";
+import reportesRoutes from "./routes/reportesRoutes"
 class Server {
     public app: Application
 
@@ -40,7 +41,9 @@ class Server {
      this.app.use('/api/factura',facturaRoutes)
      this.app.use('/api/detalleFactura',detalleFacturaRoutes)
      this.app.use('/api/descuento',descuentoRoutes)
-        
+     
+     
+     this.app.use('/api/reportes',reportesRoutes)
     }
     
     //conecion  
