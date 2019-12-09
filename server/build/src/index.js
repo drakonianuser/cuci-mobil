@@ -16,6 +16,7 @@ const servicioVehiculoRoutes_1 = __importDefault(require("./routes/servicioVehic
 const facturaRoutes_1 = __importDefault(require("./routes/facturaRoutes"));
 const detalleFacturaRoutes_1 = __importDefault(require("./routes/detalleFacturaRoutes"));
 const descuentoRoutes_1 = __importDefault(require("./routes/descuentoRoutes"));
+const parametrizacionRoutes_1 = __importDefault(require("./routes/parametrizacionRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -41,6 +42,7 @@ class Server {
         this.app.use('/api/factura', facturaRoutes_1.default);
         this.app.use('/api/detalleFactura', detalleFacturaRoutes_1.default);
         this.app.use('/api/descuento', descuentoRoutes_1.default);
+        this.app.use('/api/parametrizacion', parametrizacionRoutes_1.default);
     }
     //conecion  
     start() {

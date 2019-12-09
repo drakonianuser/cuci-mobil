@@ -49,6 +49,11 @@ class ParametrizacionController {
         return res.json({ message: 'Se creo el descuento' });
     }
 
+
+    public async getServicios(req:Request,res:Response):Promise<any>{
+        return await pool.query('SELECT * FORM SERVICIOS WHERE ACTIVO = "S"');
+    }
+
     /**
      * Modifica los servicios 
      * @param req resive un id como parametro 

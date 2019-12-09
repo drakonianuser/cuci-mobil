@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
     if (usuarioS.USUARIO == 'admin') {
       this.links = [
         { name: 'Registrar entrada', path: '/registroVehiculo' },
-        { name: 'Parametrización', path: '/editarServicio' },
+        { name: 'Parametrización', path: '/parametrizacion' },
         { name: 'Turnos', path: '/vehiculosIngresados' },
         { name: 'Generar reporte', path: '/Reportes' },
         { name: 'Cerrar sesión', path: '/' }
