@@ -10,17 +10,18 @@ class ParametrizacionRoutes {
 
     config(): void {
         //this.router.get('/pdescuento/:ID', parametrizacionController.getOneDescuento);
-        this.router.post('/parametrizacion/createDescuento', parametrizacionController.createDescuento);
-        this.router.put('/parametrizacion/updateDescuento/:id', parametrizacionController.updateDescuento);
-        this.router.delete('/parametrizacion/deleteDescuento/:id', parametrizacionController.deleteDescuento)
+        this.router.post('/createDescuento', parametrizacionController.createDescuento);
+        this.router.put('/updateDescuento/:id', parametrizacionController.updateDescuento);
+        this.router.delete('/deleteDescuento/:id', parametrizacionController.deleteDescuento);
 
-        this.router.post('/parametrizacion/createServicio',parametrizacionController.createServicio);
-        this.router.put('/parametrizacion/updateServicio/:id',parametrizacionController.updateServicio);
-        this.router.delete('/parametrizacion/delecteServicio',parametrizacionController.delecteServicio);
+        this.router.get('/getServicios',parametrizacionController.getServicios);
+        this.router.post('/createServicio',parametrizacionController.createServicio);
+        this.router.put('/updateServicio/:id',parametrizacionController.updateServicio);
+        this.router.delete('/delecteServicio/:id',parametrizacionController.delecteServicio);
 
-        this.router.post('/parametrizacion/createServicioVehiculo/:idServicio/:idVehiculo',parametrizacionController.createServicoVehiculo);
-        this.router.put('/parametrizacion/updateServicioVehiculo/:IDSERVICIOSVEHICULO',parametrizacionController.updateServicio);
-        this.router.delete('/parametrizacion/updateServicioVehiculo/:IDSERVICIOSVEHICULO',parametrizacionController.updateServicio);
+        this.router.post('/createServicioVehiculo/:idServicio/:idVehiculo',parametrizacionController.createServicoVehiculo);
+        this.router.put('/updateServicioVehiculo/:IDSERVICIOSVEHICULO',parametrizacionController.updateServicio);
+        this.router.delete('/delecteServicioVehiculo/:IDSERVICIOSVEHICULO',parametrizacionController.updateServicio);
         
     }
 }

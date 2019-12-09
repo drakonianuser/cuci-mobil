@@ -34,7 +34,7 @@ const routes: Route[] = [
   {path: 'inicio', component: PantallaInicioComponent},
   {path: 'registrarEntrada', component: RegistrarEntradaServitecaComponent}, 
 
-  {path: 'registroVehiculo', component: RegistroVehiculoComponent},
+  {path: 'parametrizacion', component: RegistroVehiculoComponent},
   {path: 'nav', component: NavComponent},
   {path: 'editarVehiculo', component: EditarVehiculoComponent},
   {path: 'editarServicio', component: EditarServicioComponent},

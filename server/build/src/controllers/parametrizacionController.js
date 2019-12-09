@@ -60,6 +60,11 @@ class ParametrizacionController {
             return res.json({ message: 'Se creo el descuento' });
         });
     }
+    getServicios(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield database_1.default.query('SELECT * FORM SERVICIOS WHERE ACTIVO = "S"');
+        });
+    }
     /**
      * Modifica los servicios
      * @param req resive un id como parametro

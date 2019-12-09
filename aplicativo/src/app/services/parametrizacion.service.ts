@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { descuentos } from '../models/descuentos'
+import { servicios } from '../models/servicios';
+import { servicioVehiculoRegistrarEntrada } from '../models/servicioVehiculoRegistrarEntrada';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,13 +27,34 @@ export class ParametrizacionService {
     return this.http.delete(`${this.API_URI}/deleteDescuento/${ID}`)
   }
 
+  //---- servicios
+  getServicios(){
+    return this.http.get(`${this.API_URI}/getServicios`);
+  }
 
+  createServicio(servicio: servicios){
+    return this.http.post(`${this.API_URI}/createServicio`,servicio)
+  }
 
-// this.router.post('/parametrizacion/createServicio', parametrizacionController.createServicio);
-// this.router.put('/parametrizacion/updateServicio/:id', parametrizacionController.updateServicio);
-// this.router.delete('/parametrizacion/delecteServicio', parametrizacionController.delecteServicio);
+  updateServicio(ID:number , servicio: servicios){
+    return this.http.put(`${this.API_URI}/updateServicio/${ID}`,servicio)
+  }
 
-// this.router.post('/parametrizacion/createServicioVehiculo/:idServicio/:idVehiculo', parametrizacionController.createServicoVehiculo);
-// this.router.put('/parametrizacion/updateServicioVehiculo/:IDSERVICIOSVEHICULO', parametrizacionController.updateServicio);
-// this.router.delete('/parametrizacion/updateServicioVehiculo/:IDSERVICIOSVEHICULO', parametrizacionController.updateServicio);
+  delecteServicio(ID: number){
+    return this.http.delete(`${this.API_URI}/delecteServicio/${ID}`)
+  }
+
+  //----Servicios vehiculo 
+  createServicioVehiculo(idServicio: number, idVehiculo: number ,serviVehicul: servicioVehiculoRegistrarEntrada){
+    return this.http.post(`${this.API_URI}/createServicioVehiculo/${idServicio}/${idVehiculo}`,serviVehicul)
+  }
+
+  updateServicioVehiculo(IDSERVICIOSVEHICULO: number,serviVehicul: servicioVehiculoRegistrarEntrada ){
+    return this.http.put(`${this.API_URI}/updateServicioVehiculo/${IDSERVICIOSVEHICULO}`,serviVehicul)
+  }
+
+  delecteServicioVehiculo(IDSERVICIOSVEHICULO: number){
+    return this.http.delete(`${this.API_URI}/delecteServicioVehiculo/${IDSERVICIOSVEHICULO}`)
+  }
 }
+ 
