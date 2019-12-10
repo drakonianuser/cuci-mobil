@@ -29,15 +29,21 @@ import {servicioVehiculoRegistrarEntradaService}from './services/servicio-vehicu
 
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
+import { AddDescuentoDialogComponent } from './add-descuento-dialog/add-descuento-dialog.component';
+import { AddServicesDialogComponent } from './add-services-dialog/add-services-dialog.component';
+import { AddTipoVehiculoDialogComponent } from './add-tipo-vehiculo-dialog/add-tipo-vehiculo-dialog.component';
+import { EditDescuentoDialogComponent } from './edit-descuento-dialog/edit-descuento-dialog.component';
+import { EditServicioDialogComponent } from './edit-servicio-dialog/edit-servicio-dialog.component';
+import { EditTipoVehiculoDialogComponent } from './edit-tipo-vehiculo-dialog/edit-tipo-vehiculo-dialog.component';
 const routes: Route[] = [
   {path: '', component: LoginComponent},
   {path: 'inicio', component: PantallaInicioComponent},
   {path: 'registrarEntrada', component: RegistrarEntradaServitecaComponent}, 
 
-  {path: 'parametrizacion', component: RegistroVehiculoComponent},
+  {path: 'registroVehiculo', component: RegistroVehiculoComponent},
   {path: 'nav', component: NavComponent},
-  {path: 'editarVehiculo', component: EditarVehiculoComponent},
-  {path: 'editarServicio', component: EditarServicioComponent},
+  {path: 'vehiculo', component: EditarVehiculoComponent},
+  {path: 'parametrizacion', component: EditarServicioComponent},
   {path: 'vehiculosIngresados', component: VehiculosIngresadosComponent},
   {path: 'Liquidacion', component: LiquidacionComponent},
   {path: 'Reportes', component: Reportes}
@@ -56,7 +62,13 @@ const routes: Route[] = [
     EditarServicioComponent,
     VehiculosIngresadosComponent,
     Reportes,
-    NavComponent
+    NavComponent,
+    AddDescuentoDialogComponent,
+    AddServicesDialogComponent,
+    AddTipoVehiculoDialogComponent,
+    EditDescuentoDialogComponent,
+    EditServicioDialogComponent,
+    EditTipoVehiculoDialogComponent
   ],
   imports: [
     MaterialModule,
@@ -77,6 +89,15 @@ const routes: Route[] = [
     FacturaService,
     DetalleFacturaService
   ],
+  entryComponents:[
+    AddDescuentoDialogComponent,
+    AddServicesDialogComponent,
+    AddTipoVehiculoDialogComponent,
+    EditDescuentoDialogComponent,
+    EditServicioDialogComponent,
+    EditTipoVehiculoDialogComponent
+  ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
   
