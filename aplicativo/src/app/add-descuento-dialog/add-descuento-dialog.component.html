@@ -1,11 +1,15 @@
 <ng-container>
-    <h1 mat-dialog-title>Hi</h1>
+    <h1 mat-dialog-title>Añadir Servicio</h1>
     <div mat-dialog-content>
-        <p>What's your favorite animal?</p>
         <mat-form-field>
+            <input matInput placeholder="Cantidad de servicios">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="descuento">
         </mat-form-field>
     </div>
     <div mat-dialog-actions>
-        <button mat-button (click)="onNoClick()">No Thanks</button>
+        <button mat-button (click)="onNoClick()">CANCELAR</button>
+        <button mat-button (click)="addDescuento()">AÑADIR</button>
     </div>
 </ng-container>

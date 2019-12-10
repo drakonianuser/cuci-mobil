@@ -11,11 +11,8 @@ import servicioVehiculoRoutes from "./routes/servicioVehiculoRoutes";
 import facturaRoutes from "./routes/facturaRoutes";
 import detalleFacturaRoutes from "./routes/detalleFacturaRoutes";
 import descuentoRoutes from "./routes/descuentoRoutes";
-<<<<<<< HEAD
 import reportesRoutes from "./routes/reportesRoutes"
-=======
-import parametrizacion from "./routes/parametrizacionRoutes";
->>>>>>> a002345ee95606beaff8a09e5c8bff3d9e541735
+import parametrizacionRoutes from "./routes/parametrizacionRoutes";
 class Server {
     public app: Application
 
@@ -35,7 +32,8 @@ class Server {
 
     //rutas
     routes(): void {
-     this.app.use('/',indexRoutes); 
+     this.app.use('/',indexRoutes)
+     this.app.use('/api/parametrizacion',parametrizacionRoutes)
      this.app.use('/api/usuarios',usuariosRoutes)
      this.app.use('/api/tipoVehiculo', tipovehiculoRoutes)
      this.app.use('/api/vehiculo',vehiculoRoutes)
@@ -45,19 +43,12 @@ class Server {
      this.app.use('/api/factura',facturaRoutes)
      this.app.use('/api/detalleFactura',detalleFacturaRoutes)
      this.app.use('/api/descuento',descuentoRoutes)
-<<<<<<< HEAD
-     
-     
-     this.app.use('/api/reportes',reportesRoutes)
-=======
-     this.app.use('/api/parametrizacion',parametrizacion)
->>>>>>> a002345ee95606beaff8a09e5c8bff3d9e541735
+     this.app.use('/api/reportes',reportesRoutes) 
     }
-    
     //conecion  
     start():void {
         this.app.listen(this.app.get('port'), ()=>{
-            console.log('Server en puerto', this.app.get('port'));
+            console.log('Server en puerto', this.app.get('port')); 
         });
     }
 

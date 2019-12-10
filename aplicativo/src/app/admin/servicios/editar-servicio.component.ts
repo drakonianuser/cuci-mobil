@@ -148,15 +148,6 @@ export class EditarServicioComponent implements OnInit {
       )
   }
 
-  crearDescuento(descuento: descuentos) {
-    this.ParametrizacionService.createDescuento(descuento)
-      .subscribe(
-        res => {
-          this.getDecuentos()
-        }
-      )
-  }
-
   updateDescuento(id: number, descuento: descuentos) {
     this.ParametrizacionService.updateDescuento(id, descuento)
       .subscribe(
