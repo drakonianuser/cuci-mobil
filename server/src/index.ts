@@ -11,7 +11,11 @@ import servicioVehiculoRoutes from "./routes/servicioVehiculoRoutes";
 import facturaRoutes from "./routes/facturaRoutes";
 import detalleFacturaRoutes from "./routes/detalleFacturaRoutes";
 import descuentoRoutes from "./routes/descuentoRoutes";
+<<<<<<< HEAD
+import reportesRoutes from "./routes/reportesRoutes"
+=======
 import parametrizacion from "./routes/parametrizacionRoutes";
+>>>>>>> a002345ee95606beaff8a09e5c8bff3d9e541735
 class Server {
     public app: Application
 
@@ -41,7 +45,13 @@ class Server {
      this.app.use('/api/factura',facturaRoutes)
      this.app.use('/api/detalleFactura',detalleFacturaRoutes)
      this.app.use('/api/descuento',descuentoRoutes)
+<<<<<<< HEAD
+     
+     
+     this.app.use('/api/reportes',reportesRoutes)
+=======
      this.app.use('/api/parametrizacion',parametrizacion)
+>>>>>>> a002345ee95606beaff8a09e5c8bff3d9e541735
     }
     
     //conecion  

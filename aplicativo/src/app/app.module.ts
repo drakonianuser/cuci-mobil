@@ -26,6 +26,7 @@ import {UsuariosService} from './services/usuarios.service'
 import {TipoVehiculoService} from './services/tipo-vehiculo.service'
 import { VehiculoService} from './services/vehiculo.service'
 import {servicioVehiculoRegistrarEntradaService}from './services/servicio-vehiculo-registrar-entrada.service'
+import { reportesServices } from './services/reportes.service'
 
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
@@ -87,7 +88,8 @@ const routes: Route[] = [
     servicioVehiculoRegistrarEntradaService,
     DescuentoService,
     FacturaService,
-    DetalleFacturaService
+    DetalleFacturaService,
+    reportesServices
   ],
   entryComponents:[
     AddDescuentoDialogComponent,
